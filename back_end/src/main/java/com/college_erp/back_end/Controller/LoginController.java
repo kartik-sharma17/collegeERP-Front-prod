@@ -12,12 +12,14 @@ import org.w3c.dom.stylesheets.LinkStyle;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class LoginController {
 
     @Autowired
     RegisterService rs;
 
-    @GetMapping("login")
+    @CrossOrigin
+    @PostMapping("login")
     public boolean Login_home(@RequestBody Login_details detials){
         return rs.login_check(detials.getUsername(),detials.getPassword());
     }
