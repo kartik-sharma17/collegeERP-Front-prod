@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styles from './Css/Login.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft} from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios'
 
 
 export const Login = () => {
@@ -13,33 +14,35 @@ export const Login = () => {
     const submit = async (e)=>{
 
         e.preventDefault();
-        
         let data = {'username':parseInt(username),'password':password}
-        console.log(data);
 
         try{
-            const response = await fetch('http://localhost:8080/login' , {
-                method: 'POST',
-                // headers: {
-                //     'Content-Type': 'application/json',
-                // },
-                body: data,
-            })
-
-            console.log("completed");
-            console.log(response);
+            const response = await axios.post('http://localhost:8080/login',data);
+            if(response.data == true){
+                alert("login successfully");
+            }
+            else{
+                alert("Wrong id or password");
+            }
 
 
-            // const response = await axois.post('https://localhost:8080/login', data);
-            // console.log('Data sent successfully:', response);
+            //     const response = await fetch('http://localhost:8080/login' , {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         },
+            //     body: JSON.stringify(data)
+            // })
+
+            // console.log("completed");
+            // console.log(response);
 
         }
         catch(e){
-            console.log(e)
+            alert("Something went wrong",e);
         }
 
     }
-
 
 
     return (
