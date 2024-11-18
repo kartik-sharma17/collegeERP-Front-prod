@@ -1,0 +1,194 @@
+
+body{
+    background-color: #cfe1eb;
+}
+
+.container{
+     background-color: #05253a;
+     position: relative;
+     overflow: hidden;
+}
+
+.form1{
+    /* background-color: yellowgreen; */
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+#student_form{
+    transform: translateX(-1200px);
+    transition: transform 0.5s;
+}
+
+#main{
+    /* z-index: 12; */
+    /* display: none; */
+}
+
+.height90{
+    height: 90%;
+}
+
+.img{
+    background-image: url(../Images/example.PNG);
+    background-size: cover;
+    margin-left:100px ;
+}
+
+
+.content{
+    background-color:#083e68;
+    overflow: auto;
+    overflow-x: hidden;
+}
+/* 
+form{
+    height: 100%;
+    width: 100%;
+} */
+
+.inp{
+    border: 1px solid #3f6c8b;
+    width: 90%;
+    height: 50px;
+    color: white;
+    font-family: "Sora", system-ui;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.inp2{
+    border: 1px solid #3f6c8b;
+    width: 85%;
+    height: 40px;
+    color: white;
+    font-family: "Sora", system-ui;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.btn{
+    width: 90%;
+    height: 50px;
+    background-color: #44b9ff;
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 15px;
+    color: white;
+    font-family: "Sora", system-ui;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+
+.btn2{
+    width: 85%;
+    height: 40px;
+    background-color: #44b9ff;
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 15px;
+    color: white;
+    font-family: "Sora", system-ui;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+
+.checkbox_container{
+    width: 85%;
+    height: 40px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+label{
+    font-size: 12px;
+    color: white;
+    font-family: "Sora", system-ui;
+    font-weight: 500;
+}
+
+.info{
+    color: #68b8d4;
+    font-family: "Sora", system-ui;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+
+::placeholder{
+    color: white;
+    font-family: "Sora", system-ui;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.heading{
+    width: 90%;
+}
+
+
+.heading h4{
+    font-size: 12px;
+    color: rgb(221, 221, 221);
+    font-family: "Sora", system-ui;
+    font-weight: 500;
+    margin: 20px 0px 0px 0px;
+}
+
+.heading h1{
+    font-size: 20px;
+    color: white;
+    font-family: "Sora", system-ui;
+    font-weight: 500;
+    margin: 20px 0px;
+}
+
+.message{
+    font-size: 12px;
+    color: rgb(175, 175, 175);
+    font-family: "Sora", system-ui;
+    font-weight: 500;
+}
+
+
+form a{
+    text-decoration: none;
+    color: #44b9ff;
+    font-family: "Sora", system-ui;
+    font-weight: 500;
+}
+
+form h5{
+    font-size: 11px;
+    color: rgb(221, 221, 221);
+    font-family: "Sora", system-ui;
+    font-weight: 500;
+    margin: 20px 0px 0px 0px;
+}
+
+
+.back_to_home{
+    font-size: 13px;
+    color: rgb(221, 221, 221);
+    font-family: "Sora", system-ui;
+    font-weight: 500;
+    position: relative;
+    left: 400px;
+    top: 20px;
+}
+
+
+
+option{
+    color: black;
+    font-family: "Sora", system-ui;
+    font-weight: 400;
+    font-size: 13px;
+}
+
+

@@ -3,7 +3,9 @@ package com.college_erp.back_end.Service;
 
 import com.college_erp.back_end.model.Login_details;
 import com.college_erp.back_end.model.Register_details;
+import com.college_erp.back_end.model.RegisteredStudents;
 import com.college_erp.back_end.repo.RegisterRepo;
+import com.college_erp.back_end.repo.RegisterStudentrepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +14,14 @@ import java.util.List;
 @Service
 public class RegisterService {
 
+
     @Autowired
+    RegisterStudentrepo Registered_student_repo;
     RegisterRepo register_repo;
 
 
-    public boolean Regster_student_details(Register_details details){
-        register_repo.save(details);
+    public boolean Register_new_student(RegisteredStudents details){
+        Registered_student_repo.save(details);
         return true;
     }
 
