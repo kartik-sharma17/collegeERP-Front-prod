@@ -4,21 +4,22 @@ package com.college_erp.back_end.Controller;
 import com.college_erp.back_end.Service.FetchService;
 import com.college_erp.back_end.model.RegisteredStudents;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 public class FetchDataController {
 
     @Autowired
     FetchService rp;
 
+    @Autowired
+    RegisteredStudents s1 ;
+
     @GetMapping("student/{id}")
-    public Optional<RegisteredStudents> getstudentDetails(@PathVariable int id){
+    public RegisteredStudents getstudentDetails(@PathVariable int id){
         return rp.getstudentdetails(id);
     }
 }

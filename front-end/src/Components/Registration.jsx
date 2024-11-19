@@ -62,7 +62,7 @@ export const Registration = () => {
         let response = true;
         type = "student";
         if (response == true && type == "student") {
-            studentregister();
+            student_registration_form.current.style.transform = 'translateX(0px)';
 
         }
         else {
@@ -78,7 +78,7 @@ export const Registration = () => {
     const student_registration_form = useRef(null);
 
     const [dob, setdob] = useState("");
-    const [Semester, setsemester] = useState("");
+    const [semester, setsemester] = useState("");
     const [course, setcourse] = useState("");
     const [branch, setbranch] = useState("");
     const [contactnumber, setcontactnumber] = useState("");
@@ -86,17 +86,40 @@ export const Registration = () => {
     const [mothernumber, setmothernumber] = useState("");
     const [fathernumber, setfathernumber] = useState("");
 
-    const studentregister = () => {
-        student_registration_form.current.style.transform = 'translateX(0px)';
-        console.log(dob);
-        console.log(Semester);
-        console.log(course);
-        console.log(branch);
-        console.log(contactnumber);
-        console.log(universityroll);
-        console.log(mothernumber);
-        console.log(fathernumber);
+    const studentregister = async (e) =>  {
+        e.preventDefault();
+        let studentData = {
+            "student_id": parseInt(username),
+            // "name": response.data.studentName,
+            "name": "kartik sharma",
+            "dob": dob,
+            // "email": response.data.studentEmail,
+            "email": "student@example.com",
+            "semester": parseInt(semester),
+            "course": course,
+            "branch": branch,
+            "number": parseInt(contactnumber),
+            "university_number": parseInt(universityroll),
+            "mother_number": parseInt(mothernumber),
+            "father_number": parseInt(fathernumber),
+            "password": password        
+        }
+        
+        let response2 ;
 
+        try{
+            response2 = await axios.post('localhost:8080/register/student',studentData);
+        }
+        catch(error){
+            alert(error);
+        }
+
+        if(response2.data == true){
+            alert("student register Successfully");
+        }
+        else{
+            alert("student Registration Failed");
+        }
     }
 
 
@@ -183,6 +206,12 @@ export const Registration = () => {
                                             setcourse(e.target.value)
                                         }} />
 
+                                    <input type="text" placeholder="Create Password : "
+                                        className={`${styles.inp2} ${"m-4"} ${"p-2"} ${"rounded-lg"} ${"bg-transparent"}`}
+                                        onChange={(e) => {
+                                            setfathernumber(e.target.value)
+                                        }} />
+
                                     <div className={styles.checkbox_container}>
                                         <input type="checkbox" value="agree" />
                                         <label className={"ml-1"}>I agree to platform accessing my <span className={styles.info}>Information</span></label>
@@ -222,6 +251,14 @@ export const Registration = () => {
                                         onChange={(e) => {
                                             setfathernumber(e.target.value)
                                         }} />
+
+                                    <input type="text" placeholder="Repeat Password : "
+                                        className={`${styles.inp2} ${"m-4"} ${"p-2"} ${"rounded-lg"} ${"bg-transparent"}`}
+                                        onChange={(e) => {
+                                            setfathernumber(e.target.value)
+                                        }} />
+
+
 
                                     <button className={styles.btn2}>CONTINUE</button>
 

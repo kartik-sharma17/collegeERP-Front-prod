@@ -6,17 +6,20 @@ import com.college_erp.back_end.repo.RegisterStudentrepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class FetchService {
 
     @Autowired
     RegisterStudentrepo registerStudentrepo;
 
+    @Autowired
+    RegisteredStudents s1;
 
-    public Optional<RegisteredStudents> getstudentdetails(int id){
-        return registerStudentrepo.findById(id);
+
+    public RegisteredStudents getstudentdetails(int id){
+        s1 = registerStudentrepo.findById(id).get();
+        s1.setPassword("");
+        return s1;
     }
 
 }
