@@ -1,0 +1,28 @@
+.main_body{
+    height: 100vh;
+    width: 100vw;
+    background-image: url(./img/login-bg.jpg);
+    background-size: cover;
+}
+
+.login_box{
+    height: 470px;
+    width: 380px;
+    background-color: rgba(255, 255, 255, 0.048);
+    backdrop-filter: blur(4px);
+}
+
+.custom_inputs{
+    background-color: transparent;
+    border: 1px solid #7d7c8398;
+    color: white;
+}
+
+.custom_inputs ::placeholder{
+    color: white;
+}
+
+.custom_btn{
+    background-color: #0d749c;
+    border: none;
+}
