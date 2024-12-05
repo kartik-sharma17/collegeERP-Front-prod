@@ -1,4 +1,4 @@
-package com.college_erp.back_end.Controller;
+package com.college_erp.back_end.Controller.Student;
 
 
 import com.college_erp.back_end.Service.StudentAttendenceService;
