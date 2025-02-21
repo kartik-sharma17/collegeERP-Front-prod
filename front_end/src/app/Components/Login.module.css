@@ -1,21 +1,50 @@
 .main_body{
     height: 100vh;
     width: 100vw;
+}
+
+.filter{
+    height: 100%;
+    width: 100%;
     background-image: url(./img/login-bg.jpg);
     background-size: cover;
+    filter: brightness(0.8);
+    position: absolute;
 }
 
 .login_box{
-    height: 470px;
+    /* height: 470px; */
     width: 380px;
-    background-color: rgba(255, 255, 255, 0.048);
+    background-color: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(4px);
+}
+
+.login_box h1{
+    font-family: "Roboto Condensed", serif;
+    font-weight: 400;
+}
+
+.login_box h6{
+    font-weight: 300;
+}
+
+.custom_anchor{
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 14px;
 }
 
 .custom_inputs{
     background-color: transparent;
     border: 1px solid #7d7c8398;
     color: white;
+    font-family: "Inconsolata", monospace;
+    font-weight: 500;
+}
+
+.custom_inputs option{
+    font-family: "Inconsolata", monospace;
+    font-weight: 500;
 }
 
 .custom_inputs ::placeholder{
@@ -23,6 +52,9 @@
 }
 
 .custom_btn{
-    background-color: #0d749c;
+    background-color: #27acac;
     border: none;
+    font-size: 17px;
+    font-family: "Roboto Condensed", serif;
+    font-weight: 400;
 }

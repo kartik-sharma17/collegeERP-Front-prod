@@ -1,15 +1,13 @@
-package com.college_erp.back_end;
+package com.example.college_erp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BackEndApplication {
+public class CollegeErpApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BackEndApplication.class, args);
+		SpringApplication.run(CollegeErpApplication.class, args);
 	}
-
-
 
 }

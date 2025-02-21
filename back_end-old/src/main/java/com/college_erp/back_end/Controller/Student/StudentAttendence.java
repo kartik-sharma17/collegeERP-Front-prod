@@ -3,6 +3,8 @@ package com.college_erp.back_end.Controller.Student;
 
 import com.college_erp.back_end.Service.StudentAttendenceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -17,7 +19,7 @@ public class StudentAttendence {
 //    to get the  attendence of student
     @GetMapping("dashboard/student/attendence/{id}")
     public Optional<com.college_erp.back_end.model.StudentAttendence> getAttendence(@PathVariable int id){
-        System.out.println("hello guys chai peelo");
+        System.out.println("hello");
         System.out.println(id);
         return ser.getstudentattendenceservice(id);
     }
@@ -31,4 +33,14 @@ public class StudentAttendence {
     }
 
 
+    @SpringBootApplication
+    public static class BackEndApplication {
+
+        public static void main(String[] args) {
+            SpringApplication.run(BackEndApplication.class, args);
+        }
+
+
+
+    }
 }
