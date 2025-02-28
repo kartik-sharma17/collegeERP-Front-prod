@@ -8,7 +8,7 @@ import { Profile } from './Students/Components/Profile'
 export const Common = () => {
   return (
     <div style={{height:"100vh", width:"100vw"}}>
-      <StudentDashboard/>
+      {/* <StudentDashboard/> */}
     {/* <Routes>
         <Route path='/' element={<Login/>} ></Route>
         <Route path='/pro' element={<Profile/>} ></Route>

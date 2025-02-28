@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Login.module.css';
 import './Outer-common.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, Links, useNavigate } from 'react-router-dom';
 import { StudentDashboard } from './Students/Components/StudentDashboard';
 
 export const Login = () => {
