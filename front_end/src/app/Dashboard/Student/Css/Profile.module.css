@@ -1,6 +1,6 @@
 .side_bar{
     /* width: 20%; */
-    height: 100%;
+    min-height: 100%;
     background-color: #111312;
 }
 
@@ -10,6 +10,10 @@
 
 .nav_bar{
     min-height: 15%;
+    background-color: #111312;
+}
+
+.custom_bg_color{
     background-color: #111312;
 }
 
@@ -27,4 +31,8 @@
 
 .active{
     background-color: #99e4de ;
+}
+
+.label{
+    color: #777a79;
 }
