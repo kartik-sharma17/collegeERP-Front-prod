@@ -5,9 +5,10 @@ import { useRouter } from 'next/navigation';
 import styles from '../../Css/Profile.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faBook, faCalendarWeek, faPenClip, faSquarePollVertical, faSackDollar, faCalendarCheck, faCircleInfo, faGear } from '@fortawesome/free-solid-svg-icons'
-import { faUser, faBookmark } from '@fortawesome/free-regular-svg-icons'
+import { faUser, faBookmark, faBell } from '@fortawesome/free-regular-svg-icons'
 import { useParams } from 'next/navigation';
 import axios from 'axios';
+import profilepic from '../../../../images/profilepic.jpg';
 
 export const StudentProfile = () => {
 
@@ -319,8 +320,7 @@ export const StudentProfile = () => {
 
   if (loading && loading2) return (
     <div className={`${styles.body} ${'container-fluid vh-100'}`}>
-      <div className={`${styles.nav_bar} ${'w-100'}`}> <h1>navbar</h1></div>
-      <div className={`${styles.main} ${'row mt-2 px-3'}`}>
+      <div className={`${styles.main} ${'row px-3'}`}>
         <div className={`${styles.side_bar} ${'col-12 px-3 col-md-2 py-4 d-flex flex-column rounded-4'}`}>
           <h6 className='ps-3'>MENU</h6>
           <buttom onClick={() => { route.push("Profile") }} className={`${styles.custom_btn} ${styles.active} ${'w-100 rounded-3 py-2 px-3 mt-2 d-flex justify-content-between align-items-center'}`}><span><FontAwesomeIcon className='me-1' icon={faUser} /> Profile</span> <FontAwesomeIcon className='text-dark' icon={faChevronRight} /></buttom>
@@ -333,6 +333,18 @@ export const StudentProfile = () => {
           <a className={`${'px-3 mt-2 d-flex justify-content-between align-items-center'} ${styles.custom_btn}`} href='/Fee'><span><FontAwesomeIcon className='me-1' icon={faGear} /> Settings</span></a>
         </div>
         <div className="col-12 col-md-10 ps-4 custom_css">
+          <div className={`${styles.nav_bar} ${'w-100 p-2 d-flex justify-content-between align-items-center'}`}>
+            <div className='d-flex'>
+              <img className='rounded-circle img-fluid' src={profilepic} alt="profile pic" />
+              <div>
+                <h6 className='text-white'>{resData.fullName}</h6>
+                <p><span className={styles.label}>Hello, Welcome Back!</span></p>
+              </div>
+            </div>
+            <div>
+              <FontAwesomeIcon className='text-white' icon={faBell} />
+            </div>
+          </div>
           <div className={`${"row w-100 text-light"}`}>
             <div className={` ${"col-12 col-md-7 pe-2 ps-0"}`}>
               <div style={{ minHeight: "100%" }} className={`${styles.custom_bg_color} ${"p-3 rounded-4"}`}>
@@ -403,8 +415,8 @@ export const StudentProfile = () => {
                     <div className="col-3">
                       <h6><span className={styles.label}>Total Days : </span>31</h6>
                       <h6><span className={styles.label}>Present : </span>{[present]}</h6>
-                      <h6><span className={styles.label}>Absent : </span>{31-present}</h6>
-                      <h6><span className={styles.label}>Percentage : </span>{parseInt((present/31)*100)}%</h6>
+                      <h6><span className={styles.label}>Absent : </span>{31 - present}</h6>
+                      <h6><span className={styles.label}>Percentage : </span>{parseInt((present / 31) * 100)}%</h6>
                     </div>
                   </div>
                 </div>
