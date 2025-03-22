@@ -1,0 +1,92 @@
+.side_bar{
+    /* width: 20%; */
+    min-height: 100%;
+    background-color: #111312;
+}
+
+.body{
+    background-color: #1e1f21;
+}
+
+.nav_bar{
+    min-height: 15%;
+    background-color: #111312;
+}
+
+.custom_bg_color{
+    background-color: #111312;
+}
+
+.side_bar h6{
+    color: #5b5d5c;
+}
+
+.custom_btn{
+    /* background-color: #99e4de; */
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #5b5d5c;
+}
+
+.active{
+    background-color: #99e4de ;
+}
+
+.label{
+    color: #777a79;
+}
+
+.present{
+    background-color: green;
+}
+.absent{
+    background-color: red;
+}
+
+.size_small{
+    font-size:10px
+}
+
+.size_medium{
+    font-size:13px
+}
+
+.custom_color1{
+    color: #888787;
+}
+
+.custom_sidebar_box{
+    border-bottom: 1px solid #5c5c5c;
+}
+.profile_pic{
+    width: 40px;
+    height: 40px;
+}
+.custom_search{
+    background-color: #272b2c;
+    border: none;
+    border-radius: 7px;
+    padding: 5px 10px;
+}
+
+::placeholder{
+    color: #5c5c5c;
+}
+
+.customBtn1{
+    background-color: #9fece4;
+    color: #272b2c;
+    border: none;
+    border-radius: 7px;
+    padding: 2px 7px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 7px;
+}
+
+.customNotifactionBox{
+    border: 1px solid #3f3f3f;
+    border-radius: 7px;
+    padding: 5px 9px;
+}

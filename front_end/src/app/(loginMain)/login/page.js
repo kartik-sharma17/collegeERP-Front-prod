@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import styles from './Login.module.css';
+import './Login.scss'
 import './common.css';
 import { useRouter } from 'next/navigation';
 
@@ -13,6 +13,8 @@ const Login = () => {
     const [id, setid] = useState();
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('');
+
+    const [loading,setLoading] = useState(false);
     
 
     let status = false;
@@ -21,25 +23,26 @@ const Login = () => {
         
         let id = userId;
         status = true;
-
+        setLoading(true);
         if(true){
             route.push(`/Dashboard/Student/Profile/${id}`)
         }
+
     }
 
 
     return (
-        <div className={`${styles.main_body}`}>
-            <div className={styles.filter}></div>
+        <div className={`${"main_body"}`}>
+            <div className={"filter"}></div>
             <div className="container d-flex h-100 w-100 justify-content-center align-items-center">
-                <div className={`${styles.login_box} ${"rounded-3"}`}>
+                <div className={`${"login_box"} ${"rounded-3"}`}>
                     <form onSubmit={LoginHandle} className='d-flex flex-column p-4'>
                         <h1 className='px-2 text-light'>Sign In</h1>
                         <h6 className='px-2 text-light'>Empowering Smarter Education.</h6>
-                        <input className={`${styles.custom_inputs} ${"px-3 py-2 m-2 "}`} type='text' id='common_outer' placeholder='Enter Id' onChange={(e) => {
+                        <input className={`${"custom_inputs"} ${"px-3 py-2 m-2 "}`} type='text' id='common_outer' placeholder='Enter Id' onChange={(e) => {
                             setUserid(e.target.value);
                         }} />
-                        <select className={`${styles.custom_inputs} ${"px-3 py-2 m-2"}`} onChange={(e) => {
+                        <select className={`${"custom_inputs"} ${"px-3 py-2 m-2"}`} onChange={(e) => {
                             setRole(e.target.value);
                         }}>
                             <option value="Select Role">Select Role</option>
@@ -48,11 +51,11 @@ const Login = () => {
                             <option className='text-dark' value="hod">Hod</option>
                             <option className='text-dark' value="admin">Admin</option>
                         </select>
-                        <input className={`${styles.custom_inputs} ${'px-3 py-2 m-2'}`} type='Password' placeholder='Enter Password' onChange={(e) => {
+                        <input className={`${"custom_inputs"} ${'px-3 py-2 m-2'}`} type='Password' placeholder='Enter Password' onChange={(e) => {
                             setPassword(e.target.value);
                         }} />
-                        <a className={`${styles.custom_anchor} ${'text-light px-3 my-1'}`} href='#'><p>Forget Password</p></a>
-                        <button className={`${styles.custom_btn} ${'px-3 py-2 mx-2 text-light'}`}>Login In</button>
+                        <a className={`${"custom_anchor"} ${'text-light px-3 my-1'}`} href='#'><p>Forget Password</p></a>
+                        <button className={`${"custom_btn"} ${'px-3 py-2 mx-2 text-light'}`}>{loading? "Login...":"Login"}</button>
                     </form>
                 </div>
             </div>
