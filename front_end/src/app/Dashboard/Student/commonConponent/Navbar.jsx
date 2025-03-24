@@ -9,16 +9,16 @@ const Navbar = () => {
   const id = para.split('/')
   return (
     <>
-      <nav class="navbar navbar-expand-lg nav_bar">
-        <div class="container-fluid">
+      <nav className="navbar navbar-expand-lg nav_bar">
+        <div className="container-fluid">
 
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item d-flex align-items-center ms-2">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item d-flex align-items-center ms-2">
                 <div className='profile_pic'>
                   <img src="/assets/img/pic.jpeg" className='img-fluid rounded-circle' alt="" />
                 </div>
@@ -29,9 +29,9 @@ const Navbar = () => {
               </li>
             </ul>
 
-            <form class="d-flex" role="search">
-              <input class=" me-2 custom_search" type="search" placeholder="Search" aria-label="Search" />
-              {/* <button class="btn btn-outline-success" type="submit">Search</button> */}
+            <form className="d-flex" role="search">
+              <input className=" me-2 custom_search" type="search" placeholder="Search" aria-label="Search" />
+              {/* <button className="btn btn-outline-success" type="submit">Search</button> */}
             </form>
             <div className='customNotifactionBox d-flex align-items-center ms-2'>
               <FontAwesomeIcon className='text-white' icon={faBell} />
