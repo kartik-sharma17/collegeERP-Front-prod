@@ -14,7 +14,7 @@ const Sidebar = () => {
   const id = para.split('/')
 
   return (
-    <div className={`${"side_bar"} ${'px-3 pb-4 pt-2 d-flex flex-column h-100'}`}>
+    <div className={`${"side_bar"} ${'px-3 pb-4 pt-2 d-flex flex-column vh-100'}`}>
       <div className='d-flex w-100 p-2 custom_sidebar_box'>
         <div>
           <img src="/assets/img/nav-icon.PNG" className='img-fluid' alt="" />
