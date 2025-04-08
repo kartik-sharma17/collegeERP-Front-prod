@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Data
 public class StudentAttendence {
     @Id
     private int studentId;
@@ -43,6 +42,9 @@ public class StudentAttendence {
     private int d26;
     private int d27;
     private int d28;
+    private int d29;
+    private int d30;
+    private int d31;
 
     public int getStudentId() {
         return studentId;
@@ -300,7 +302,4 @@ public class StudentAttendence {
         this.d31 = d31;
     }
 
-    private int d29;
-    private int d30;
-    private int d31;
 }
