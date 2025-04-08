@@ -13,6 +13,7 @@ const Login = () => {
     const [id, setid] = useState();
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('');
+    
 
     const [loading,setLoading] = useState(false);
     
@@ -24,11 +25,18 @@ const Login = () => {
         let id = userId;
         status = true;
         setLoading(true);
-        if(true){
+        if(true && role == "student"){
             route.push(`/Dashboard/Student/Profile/${id}`)
+        }
+        else if(true && role == "faculty"){
+            route.push(`/Dashboard/Faculty/Profile/${id}`)
+        }
+        else{
+            alert("please select the role")
         }
 
     }
+
 
 
     return (
