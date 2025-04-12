@@ -1,9 +1,6 @@
 package com.example.college_erp.Service.Faculty;
 
-import com.example.college_erp.Model.Faculty.AttendenceUpdate;
-import com.example.college_erp.Model.Faculty.DeleteEvents;
-import com.example.college_erp.Model.Faculty.FacultyProfile;
-import com.example.college_erp.Model.Faculty.MarksUpdate;
+import com.example.college_erp.Model.Faculty.*;
 import com.example.college_erp.Model.Student.StudentAttendence;
 import com.example.college_erp.Model.Student.StudentEvents;
 import com.example.college_erp.Model.Student.StudentResult;
@@ -19,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class FacultyService {
@@ -181,32 +180,68 @@ public class FacultyService {
         return true;
     }
 
-//    for updating the events
-    public ResponseEntity<String> updateEvents(StudentEvents eventsDetails){
+    //    for updating the events
+    public ResponseEntity<String> updateEvents(StudentEvents eventsDetails) {
         StudentEvents e1 = new StudentEvents();
         e1 = studentevents.findById(eventsDetails.getEventid()).orElse(null);
-        if(e1 == null){
+        if (e1 == null) {
             studentevents.save(eventsDetails);
             return new ResponseEntity<>("SuccessFully Added", HttpStatus.CREATED);
-        }else{
-            return new ResponseEntity<>("Event is already Exist Please Change Event ID or Delete Event with ID = "+e1.getEventid(),HttpStatus.CONFLICT);
+        } else {
+            return new ResponseEntity<>("Event is already Exist Please Change Event ID or Delete Event with ID = " + e1.getEventid(), HttpStatus.CONFLICT);
         }
     }
 
 
-
-//    for deleting the event
-    public boolean deleteEvents(DeleteEvents details){
-        try{
+    //    for deleting the event
+    public boolean deleteEvents(DeleteEvents details) {
+        try {
             studentevents.deleteById(details.getEventid());
             System.out.println(details);
             System.out.println("running successfully");
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
             return false;
         }
     }
 
+
+    //    send attendence list
+    public List<AttendenceSend> sendAttendenceList(String section) {
+        List<StudentAttendence> s1 = studentAttendence.findAll();
+
+        ArrayList<AttendenceSend> studentList = new ArrayList<>();
+
+        for (int i = 0; i < s1.size(); i++) {
+            if (s1.get(i).getSection().equals(section)) {
+                AttendenceSend student = new AttendenceSend();
+                student.setStudentId(s1.get(i).getStudentId());
+                student.setStudentName(s1.get(i).getStudentName());
+                studentList.add(student);
+            }
+        }
+
+        return studentList;
+    }
+
+
+    //    send resutl student list
+    public List<ResultlistSend> sendResultList(String section) {
+        List<StudentResult> s1 = studentresult.findAll();
+
+        ArrayList<ResultlistSend> studentList = new ArrayList<>();
+
+        for (int i = 0; i < s1.size(); i++) {
+            if (s1.get(i).getSection().equals(section)) {
+                ResultlistSend student = new ResultlistSend();
+                student.setStudentId(s1.get(i).getStudentId());
+                student.setStudentName(s1.get(i).getStudentName());
+                studentList.add(student);
+            }
+        }
+
+        return studentList;
+    }
 
 }

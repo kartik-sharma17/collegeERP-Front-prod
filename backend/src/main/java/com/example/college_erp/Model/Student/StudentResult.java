@@ -13,8 +13,27 @@ public class StudentResult {
 
     @Id
     private int StudentId;
+    private String studentName;
+    private String section;
     private String s1s1;
     private int s1s1Marks;
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
+
     private String s1s2;
     private int s1s2Marks;
     private String s1s3;

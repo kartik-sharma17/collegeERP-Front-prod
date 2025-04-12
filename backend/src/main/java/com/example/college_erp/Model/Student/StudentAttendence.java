@@ -7,15 +7,33 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Component
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class StudentAttendence {
     @Id
     private int studentId;
+    private String section;
+    private String studentName;
     private int d1;
     private int d2;
+
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
     private int d3;
     private int d4;
     private int d5;
