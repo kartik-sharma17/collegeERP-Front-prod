@@ -13,11 +13,11 @@ const page = () => {
 
   useEffect(() => {
     const data2 = {
-      labels: [data.get('s1s1'), data.get('s1s2'), data.get('s1s3'), data.get('s1s4'), data.get('s1s5'),data.get('s1s6')],
+      labels: [data.get('s1s1'), data.get('s1s2'), data.get('s1s3'), data.get('s1s4'), data.get('s1s5'), data.get('s1s6')],
       datasets: [
         {
           label: 'Sessional 1 Marks',
-          data: [data.get('s1s1Marks'), data.get('s1s2Marks'), data.get('s1s3Marks'), data.get('s1s4Marks'), data.get('s1s5Marks'),data.get('s1s6Marks')],
+          data: [data.get('s1s1Marks'), data.get('s1s2Marks'), data.get('s1s3Marks'), data.get('s1s4Marks'), data.get('s1s5Marks'), data.get('s1s6Marks')],
           backgroundColor: [
             'rgba(255, 159, 64, 0.2)',
             'rgba(75, 192, 192, 0.2)',

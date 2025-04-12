@@ -1,398 +1,119 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
-import { useParams } from 'next/navigation';
-import { Chart } from 'primereact/chart';
+import { useParams, useRouter } from 'next/navigation';
 import 'primereact/resources/themes/lara-light-indigo/theme.css'; // Theme
 import 'primereact/resources/primereact.min.css'; // Core CSS
 import 'primeicons/primeicons.css'; // Icons
+import { getStudentattendenceList } from '@/app/Dashboard/Apis/Apihandler';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { Button } from 'primereact/button';
+import { updateStudentattendence } from '@/app/Dashboard/Apis/Apihandler';
 
 const page = () => {
-  const params = useParams();
-  const id = params.id;
-  const [loading2, setLoading2] = useState(false);
-  const [resAttendence, setAttendence] = useState(null);
-  // fettching the data for attendence
+  // for table 
+  const [loading, setLoading] = useState(false);
+  const [attendence, setAttendence] = useState([]);
+  const [tableData, setTabledata] = useState([]);
+  const [day, setDay] = useState("Select Day");
+  const route = useRouter();
+  const param = useParams();
 
-  const fetchAttendence = async () => {
-    try {
-      await axios.get(`https://college-erp-prod-backend-production.up.railway.app/dashboard/student/attendence/${id}`).then((res) => {
-        setAttendence(res.data);
-        console.log(res);
-        setLoading2(true);
-        // const objLength = Object.keys(res.data).length;
-        // console.log(objLength);
-      })
-    }
-    catch (error) {
-      console.log("there is some error while Fetching the Attendence from backend", error)
-    }
-  }
+  const id = param.id;
+  let section;
+  // getting the section
+
 
   useEffect(() => {
-    fetchAttendence();
+    section = localStorage.getItem("section");
+    setTimeout(() => {
+      if (section == null) {
+        route.push(`/Dashboard/Faculty/Profile/${id}`)
+      }
+    }, 1000)
   }, [])
 
-  var present = 0;
+  const getStudentlist = async () => {
+    const res = await getStudentattendenceList(section);
+    setTabledata(res.data);
+    console.log(res.data);
+    setLoading(true)
+  }
 
+  useEffect(() => {
+    getStudentlist()
+  }, []);
 
-  var day1;
-  var day2;
-  var day3;
-  var day4;
-  var day5;
-  var day6;
-  var day7;
-  var day8;
-  var day9;
-  var day10;
-  var day11;
-  var day12;
-  var day13;
-  var day14;
-  var day15;
-  var day16;
-  var day17;
-  var day18;
-  var day19;
-  var day20;
-  var day21;
-  var day22;
-  var day23;
-  var day24;
-  var day25;
-  var day26;
-  var day27;
-  var day28;
-  var day29;
-  var day30;
-  var day31;
+  const updateAttendence = (rowData) => {
+    if (attendence.some(item => item.id === rowData.studentId)) return (
+      <button onClick={() => {
+        setAttendence(pre => pre.filter(pre => pre.id != rowData.studentId))
+        console.log("update aatendence")
+      }}>Mark A</button>
+    )
+    return (
+      <button onClick={() => {
+        if (day !== "Select Day") {
+          setAttendence(pre => [...pre, { id: rowData.studentId, day: parseInt(day), attendence: 1 }])
+          console.log("update aatendence")
+        } else {
+          alert("select the day first");
+        }
+      }}>Mark P</button>
+    )
+  }
 
+  useEffect(() => {
+    setAttendence([]);
+  }, [day])
 
-  if (loading2) {
-    if (resAttendence.d1 == 1) {
-      day1 = true;
-      present++;
-    } else {
-      day1 = false;
-    }
+  const handleUpdateAttence = async (e) => {
+    e.preventDefault();
 
-    if (resAttendence.d2 == 1) {
-      day2 = true;
-      present++;
-    } else {
-      day2 = false;
-    }
-
-    if (resAttendence.d3 == 1) {
-      day3 = true;
-      present++;
-    } else {
-      day3 = false;
-    }
-
-    if (resAttendence.d4 == 1) {
-      day4 = true;
-      present++;
-    } else {
-      day4 = false;
-    }
-
-    if (resAttendence.d5 == 1) {
-      day5 = true;
-      present++;
-    } else {
-      day5 = false;
-    }
-
-    if (resAttendence.d6 == 1) {
-      day6 = true;
-      present++;
-    } else {
-      day6 = false;
-    }
-
-    if (resAttendence.d7 == 1) {
-      day7 = true;
-      present++;
-    } else {
-      day7 = false;
-    }
-
-    if (resAttendence.d8 == 1) {
-      day8 = true;
-      present++;
-    } else {
-      day8 = false;
-    }
-
-    if (resAttendence.d9 == 1) {
-      day9 = true;
-      present++;
-    } else {
-      day9 = false;
-    }
-
-    if (resAttendence.d10 == 1) {
-      day10 = true;
-      present++;
-    } else {
-      day10 = false;
-    }
-
-    if (resAttendence.d11 == 1) {
-      day11 = true;
-      present++;
-    } else {
-      day11 = false;
-    }
-
-    if (resAttendence.d12 == 1) {
-      day12 = true;
-      present++;
-    } else {
-      day12 = false;
-    }
-
-    if (resAttendence.d13 == 1) {
-      day13 = true;
-      present++;
-    } else {
-      day13 = false;
-    }
-
-    if (resAttendence.d14 == 1) {
-      day14 = true;
-      present++;
-    } else {
-      day14 = false;
-    }
-
-    if (resAttendence.d15 == 1) {
-      day15 = true;
-      present++;
-    } else {
-      day15 = false;
-    }
-
-    if (resAttendence.d16 == 1) {
-      day16 = true;
-      present++;
-    } else {
-      day16 = false;
-    }
-
-    if (resAttendence.d17 == 1) {
-      day17 = true;
-      present++;
-    } else {
-      day17 = false;
-    }
-
-    if (resAttendence.d18 == 1) {
-      day18 = true;
-      present++;
-    } else {
-      day18 = false;
-    }
-
-    if (resAttendence.d19 == 1) {
-      day19 = true;
-      present++;
-    } else {
-      day19 = false;
-    }
-
-    if (resAttendence.d20 == 1) {
-      day20 = true;
-      present++;
-    } else {
-      day20 = false;
-    }
-
-    if (resAttendence.d21 == 1) {
-      day21 = true;
-      present++;
-    } else {
-      day21 = false;
-    }
-
-    if (resAttendence.d22 == 1) {
-      day22 = true;
-      present++;
-    } else {
-      day22 = false;
-    }
-
-    if (resAttendence.d23 == 1) {
-      day23 = true;
-      present++;
-    } else {
-      day23 = false;
-    }
-
-    if (resAttendence.d24 == 1) {
-      day24 = true;
-      present++;
-    } else {
-      day24 = false;
-    }
-
-    if (resAttendence.d25 == 1) {
-      day25 = true;
-      present++;
-    } else {
-      day25 = false;
-    }
-
-    if (resAttendence.d26 == 1) {
-      day26 = true;
-      present++;
-    } else {
-      day26 = false;
-    }
-
-    if (resAttendence.d27 == 1) {
-      day27 = true;
-      present++;
-    } else {
-      day27 = false;
-    }
-
-    if (resAttendence.d28 == 1) {
-      day28 = true;
-      present++;
-    } else {
-      day28 = false;
-    }
-
-    if (resAttendence.d29 == 1) {
-      day29 = true;
-      present++;
-    } else {
-      day29 = false;
-    }
-
-    if (resAttendence.d30 == 1) {
-      day30 = true;
-      present++;
-    } else {
-      day30 = false;
-    }
-
-    if (resAttendence.d31 == 1) {
-      day31 = true;
-      present++;
-    } else {
-      day31 = false;
+    if (day !== "Select Day")
+      if (attendence.length !== 0) {
+        try {
+          let response = await updateStudentattendence(attendence)
+          console.log(response);
+          alert("updated successfully")
+        }
+        catch (e) {
+          console.log(e)
+          alert("there is some error ", e)
+        }
+      }
+      else {
+        alert("Please update the attendence first")
+      }
+    else {
+      alert("please select the day first")
     }
   }
 
 
-  const [chartData, setChartData] = useState({});
-  const [chartOptions, setChartOptions] = useState({});
-
-  // for pie chart
-  useEffect(() => {
-    const documentStyle = getComputedStyle(document.documentElement);
-    const data = {
-      labels: ['Present', 'Absent'],
-      datasets: [
-        {
-          data: [19, 3], // get value of present from the backend
-          backgroundColor: [
-            documentStyle.getPropertyValue('--green-500'),
-            documentStyle.getPropertyValue('--red-500'),
-          ],
-          hoverBackgroundColor: [
-            documentStyle.getPropertyValue('--blue-400'),
-            documentStyle.getPropertyValue('--yellow-400'),
-          ]
-        }
-      ]
-    };
-    const options = {
-      cutout: '60%'
-    };
-
-    setChartData(data);
-    setChartOptions(options);
-  }, []);
-
-
-
-  if (loading2) return (
+  if (loading) return (
     <div className="row">
-      <div className={`${"col-12 col-md-7"}`}>
-        <div className="row">
-          <div className="col-12 px-2">
-          <div className={`${"custom_bg_color"} ${"p-3 rounded-4"}`}>
-            <h4 className='text-light pb-1' style={{ borderBottom: "1px solid #5B5D5C" }}>Attendence</h4>
-            <div className="row p-1 g-2">
-              <div className="col-12">
-                <div className="row">
-                  <div style={{ height: "34px", width: "34px", }} className={`${day1 ? "present" : "absent"} ${'p-2 m-2'}`} >1</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day2 ? "present" : "absent"} ${'p-2 m-2'}`} >2</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day3 ? "present" : "absent"} ${'p-2 m-2'}`} >3</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day4 ? "present" : "absent"} ${'p-2 m-2'}`} >4</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day5 ? "present" : "absent"} ${'p-2 m-2'}`} >5</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day6 ? "present" : "absent"} ${'p-2 m-2'}`} >6</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day7 ? "present" : "absent"} ${'p-2 m-2'}`} >7</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day8 ? "present" : "absent"} ${'p-2 m-2'}`} >8</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day9 ? "present" : "absent"} ${'p-2 m-2'}`} >9</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day10 ? "present" : "absent"} ${'p-2 m-2'}`} >10</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day11 ? "present" : "absent"} ${'p-2 m-2'}`} >11</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day12 ? "present" : "absent"} ${'p-2 m-2'}`} >12</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day13 ? "present" : "absent"} ${'p-2 m-2'}`} >13</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day14 ? "present" : "absent"} ${'p-2 m-2'}`} >14</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day15 ? "present" : "absent"} ${'p-2 m-2'}`} >15</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day16 ? "present" : "absent"} ${'p-2 m-2'}`} >16</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day17 ? "present" : "absent"} ${'p-2 m-2'}`} >17</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day18 ? "present" : "absent"} ${'p-2 m-2'}`} >18</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day19 ? "present" : "absent"} ${'p-2 m-2'}`} >19</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day20 ? "present" : "absent"} ${'p-2 m-2'}`} >20</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day21 ? "present" : "absent"} ${'p-2 m-2'}`} >21</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day22 ? "present" : "absent"} ${'p-2 m-2'}`} >22</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day23 ? "present" : "absent"} ${'p-2 m-2'}`} >23</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day24 ? "present" : "absent"} ${'p-2 m-2'}`} >24</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day25 ? "present" : "absent"} ${'p-2 m-2'}`} >25</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day26 ? "present" : "absent"} ${'p-2 m-2'}`} >26</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day27 ? "present" : "absent"} ${'p-2 m-2'}`} >27</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day28 ? "present" : "absent"} ${'p-2 m-2'}`} >28</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day29 ? "present" : "absent"} ${'p-2 m-2'}`} >29</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day30 ? "present" : "absent"} ${'p-2 m-2'}`} >30</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day31 ? "present" : "absent"} ${'p-2 m-2'}`} >31</div>
-                </div>
-              </div>
-            </div>
+      <div className="col-12 px-2">
+        <div className={`${"custom_bg_color"} ${"p-3 rounded-4"}`}>
+          <div className="col-12 d-flex align-items-center justify-content-between">
+            <h4 className='text-light pb-1 text-uppercase' style={{ borderBottom: "1px solid #5B5D5C" }}>Attendence Update</h4>
+            <select onChange={(e) => { setDay(e.target.value) }} name="day" id="day">
+              <option value="Select Day">Select Day</option>
+              {[...Array(31)].map((_, index) => (
+                <option key={index} value={index + 1}>
+                  Day {index + 1}
+                </option>
+              ))}
+            </select>
           </div>
-          </div>
-          <div className="col-12 col-md-5 p-2">
-            <div className="custom_bg_color p-3 rounded-4">
-            <h4 className='text-light pb-1' style={{ borderBottom: "1px solid #5B5D5C" }}>Percentage</h4>
-            <h6><span className={"label"}>Total Days : </span>31</h6>
-            <h6><span className={"label"}>Present : </span>{[present]}</h6>
-            <h6><span className={"label"}>Absent : </span>{31 - present}</h6>
-            <h6><span className={"label"}>Percentage : </span>{parseInt((present / 31) * 100)}%</h6>
-            </div>
-          </div>
-          <div className="col-12 col-md-7 p-2">
-            <div className="custom_bg_color p-3 rounded-4">
-            <h4 className='text-light pb-1' style={{ borderBottom: "1px solid #5B5D5C" }}>Holidays</h4>
-            <h6><span className={"label"}>Total Days : </span>31</h6>
-            <h6><span className={"label"}>Present : </span>{[present]}</h6>
-            <h6><span className={"label"}>Absent : </span>{31 - present}</h6>
-            <h6><span className={"label"}>Percentage : </span>{parseInt((present / 31) * 100)}%</h6>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className='col-12 col-md-5 px-1'>
-        <div className='custom_bg_color p-3 rounded-4'>
-          <h4 className='text-light pb-1' style={{ borderBottom: "1px solid #5B5D5C" }}>Attendence Chart</h4>
-          <div className="card flex justify-content-center">
-            <Chart type="doughnut" data={chartData} options={chartOptions} className="w-full md:w-30rem" />
-          </div>
+          <DataTable value={tableData} paginator rows={5} dataKey="id" emptyMessage="No customers found.">
+            <Column field="studentId" header="Student ID" />
+            <Column field="studentName" header="Student Name" />
+            <Column body={updateAttendence} header="Attendence" />
+          </DataTable>
+          <form onSubmit={handleUpdateAttence}>
+            <button>UPDATE ATTENDENCE</button>
+          </form>
         </div>
       </div>
     </div>

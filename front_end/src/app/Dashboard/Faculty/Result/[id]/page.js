@@ -1,74 +1,98 @@
 'use client'
-import axios from 'axios';
-import Link from 'next/link'
-import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
+import { useParams, useRouter } from 'next/navigation';
+import 'primereact/resources/themes/lara-light-indigo/theme.css'; // Theme
+import 'primereact/resources/primereact.min.css'; // Core CSS
+import 'primeicons/primeicons.css'; // Icons
+import { getStudentresultList } from '@/app/Dashboard/Apis/Apihandler';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { updateStudentattendence } from '@/app/Dashboard/Apis/Apihandler';
+import Link from 'next/link';
 
 const page = () => {
-  const params = useParams();
-  const id = params.id;
+    // for table 
+    const [loading, setLoading] = useState(false);
+    const [attendence, setAttendence] = useState([]);
+    const [tableData, setTabledata] = useState([]);
+    const [day, setDay] = useState("Select Day");
+    const route = useRouter();
+    const param = useParams();
 
-  const [loading, setLoading] = useState(false);
-  const [resData, setResData] = useState(null);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+    const id = param.id;
+    var section;
+    // getting the section
 
 
-  // fettching the data for profile 
-  const fetchData = async () => {
-    try {
-      await axios.get(`https://college-erp-prod-backend-production.up.railway.app/dashboard/student/result/${id}`).then((res) => {
-        setResData(res.data);
-        console.log(res);
-        setLoading(true);
-      })
+    useEffect(() => {
+        section = localStorage.getItem("section");
+        setTimeout(() => {
+            if (section == null) {
+                route.push(`/Dashboard/Faculty/Profile/${id}`)
+            }
+        }, 1000)
+    }, [])
+
+    const getStudentlist = async () => {
+        const res = await getStudentresultList(section);
+        setTabledata(res.data);
+        setLoading(true)
     }
-    catch (error) {
-      console.log("there is some error while Fetching the data from backend", error)
+
+    useEffect(() => {
+        getStudentlist()
+    }, []);
+
+    const updateResult = (rowData) => {
+        return (
+            <>
+                <Link href={{ pathname: `/Dashboard/Faculty/Result/${id}/updateResult`, query: rowData }} >Update Result</Link>
+            </>
+        )
     }
-  }
+
+    useEffect(() => {
+        setAttendence([]);
+    }, [day])
+
+    const handleUpdateAttence = async (e) => {
+        e.preventDefault();
+
+        if (day !== "Select Day")
+            if (attendence.length !== 0) {
+                try {
+                    let response = await updateStudentattendence(attendence)
+                    console.log(response);
+                    alert("updated successfully")
+                }
+                catch (e) {
+                    console.log(e)
+                    alert("there is some error ", e)
+                }
+            }
+            else {
+                alert("Please update the attendence first")
+            }
+        else {
+            alert("please select the day first")
+        }
+    }
 
 
-  if (loading) return (
-    <>
-      <div className="row">
-        <div className="col-12 col-md-6 px-2">
-          <Link className='text-decoration-none' href={{pathname:`/Dashboard/Student/Result/${id}/sessional1`, query:resData}}>
-            <div className='custom_bg_color p-3 rounded-4'>
-              <h4 className='text-light pb-1' style={{ borderBottom: "1px solid #5B5D5C" }}>Sessional 1</h4>
-              <h6 className='text-light'><span className={"label"}>Date : </span> 31-10-24</h6>
+    if (loading) return (
+        <div className="row">
+            <div className="col-12 px-2">
+                <div className={`${"custom_bg_color"} ${"p-3 rounded-4"}`}>
+                    <h4 className='text-light pb-1 text-uppercase' style={{ borderBottom: "1px solid #5B5D5C" }}>Result Update </h4>
+                    <DataTable value={tableData} paginator rows={5} dataKey="id" emptyMessage="No customers found.">
+                        <Column field="studentId" header="Student ID" />
+                        <Column field="studentName" header="Student Name" />
+                        <Column body={updateResult} header="Attendence" />
+                    </DataTable>
+                </div>
             </div>
-          </Link>
         </div>
-        <div className="col-12 col-md-6 px-2">
-          <Link  className='text-decoration-none' href={{pathname:`/Dashboard/Student/Result/${id}/sessional2`, query:resData}}>
-            <div className='custom_bg_color p-3 rounded-4'>
-              <h4 className='text-light pb-1' style={{ borderBottom: "1px solid #5B5D5C" }}>Sessional 2</h4>
-              <h6 className='text-light'><span className={"label"}>Date : </span> 28-12-24</h6>
-            </div>
-          </Link>
-        </div>
-        <div className="col-12 col-md-6 px-2 py-2">
-          <Link  className='text-decoration-none' href={{pathname:`/Dashboard/Student/Result/${id}/sessional3`, query:resData}}>
-            <div className='custom_bg_color p-3 rounded-4'>
-              <h4 className='text-light pb-1' style={{ borderBottom: "1px solid #5B5D5C" }}>Sessional 3</h4>
-              <h6 className='text-light'><span className={"label"}>Date : </span> 02-02-25</h6>
-            </div>
-          </Link>
-        </div>
-        <div className="col-12 col-md-6 px-2 py-2">
-          <Link  className='text-decoration-none' href={{pathname:`/Dashboard/Student/Result/${id}/put`, query:resData}}>
-            <div className='custom_bg_color p-3 rounded-4'>
-              <h4 className='text-light pb-1' style={{ borderBottom: "1px solid #5B5D5C" }}>PUT</h4>
-              <h6 className='text-light'><span className={"label"}>Date : </span> 03-04-25</h6>
-            </div>
-          </Link>
-        </div>
-      </div>
-    </>
-  )
+    )
 }
 
 export default page
