@@ -24,3 +24,15 @@ export const getStudentresultList = (section) => {
 export const updatestudentresult = (data) => {
     return axios.post(`${API_URL}${ApiEndPoint.Faculty.studentresultupdate}`,data)
 }
+
+export const getEventds = () => {
+    return axios.get(`${API_URL}${ApiEndPoint.Faculty.getEvents}`)
+}
+
+export const deleteEvents = (data) => {
+    return axios.post(`${API_URL}${ApiEndPoint.Faculty.deleteEvents}`,data)
+}
+
+export const updateEvents = (data) => {
+    return axios.post(`${API_URL}${ApiEndPoint.Faculty.updateEvents}`,data)
+}

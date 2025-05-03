@@ -183,6 +183,7 @@ public class FacultyService {
     //    for updating the events
     public ResponseEntity<String> updateEvents(StudentEvents eventsDetails) {
         StudentEvents e1 = new StudentEvents();
+        System.out.println(eventsDetails.getEventid());
         e1 = studentevents.findById(eventsDetails.getEventid()).orElse(null);
         if (e1 == null) {
             studentevents.save(eventsDetails);

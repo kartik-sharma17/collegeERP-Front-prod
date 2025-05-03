@@ -37,6 +37,10 @@
     color: #777a79;
 }
 
+.label{
+    color: #777a79;
+}
+
 .present{
     background-color: green;
     color: white;
@@ -91,4 +95,31 @@
     border: 1px solid #3f3f3f;
     border-radius: 7px;
     padding: 5px 9px;
+}
+
+
+// for loader spinner
+.custom-spinner svg circle {
+    stroke: #99e4de !important; 
+  }
+
+.customBtnlink{
+    text-decoration: none;
+    color: #5b5d5c;
+    background-color: #9fece4;
+    border-radius: 8px;
+    padding: 2px 20px;
+}
+
+.deleteBtn{
+    color: white;
+    background-color: #ed4541;
+    border-radius: 8px;
+    font-size: small;
+    padding: 2px 20px;
+}
+
+.customBG{
+    background-color: #9fece4;
+    color: #5b5d5c;
 }

@@ -6,6 +6,9 @@ export const ApiEndPoint = {
         updateStudentattendence: "dashboard/faculty/attendence",
         studentlistforresult: "faculty/upload/result/",
         studentresultupdate: "dashboard/faculty/updatemarks",
+        getEvents: "dashboard/student/events",
+        deleteEvents:"dashboard/faculty/deleteevents",
+        updateEvents:"dashboard/faculty/updatevents"
     }
     
 };

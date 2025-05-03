@@ -1,7 +1,8 @@
 'use client'
 import { useSearchParams } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { updatestudentresult } from '@/app/Dashboard/Apis/Apihandler'
+import { Loader } from '@/app/Dashboard/@core/Loader'
 
 const page = () => {
     const [subject1Name, setSubject1name] = useState("");
@@ -17,6 +18,7 @@ const page = () => {
     const [subject6Name, setSubject6name] = useState("");
     const [subject6marks, setSubject6marks] = useState();
     const [examType, setExamtype] = useState('Select Exam Type');
+    const [loading,setLoading] = useState(true);
 
 
     const data1 = useSearchParams()
@@ -59,64 +61,78 @@ const page = () => {
         console.log(data);
     }
 
+
+    useEffect(()=>{
+        setTimeout(()=>{
+            setLoading(false);
+        },1000)
+    },[])
+
     return (
-        <div className="row">
-            <div className="col-12 px-2">
-                <div className={`${"custom_bg_color"} ${"p-3 rounded-4"}`}>
-                    <div className="col-12 d-flex align-items-center justify-content-between">
-                        <h4 className='text-light pb-1 text-uppercase' style={{ borderBottom: "1px solid #5B5D5C" }}>{studentName}'s Result Update</h4>
-                        <select onChange={(e) => { setExamtype(e.target.value) }} name="day" id="day">
-                            <option value="Select Day">Select Exam Type</option>
-                            <option value="1">Sessional 1</option>
-                            <option value="2">Sessional 2</option>
-                            <option value="3">Sessional 3</option>
-                            <option value="4">Put</option>
-                        </select>
-                    </div>
-                    <form onSubmit={handleUpdateresult}>
-                        <div className="row">
-                            <div className="col-12 col-md-6">
-                                <input type="text" onChange={(e) => { setSubject1name(e.target.value) }} placeholder='Enter Subject 1 Name' />
+        <>
+        {loading? (
+            <Loader/>
+        ) : (
+                    <div className="row">
+                    <div className="col-12 px-2">
+                        <div className={`${"custom_bg_color"} ${"p-3 rounded-4"}`}>
+                            <div className="col-12 d-flex align-items-center justify-content-between">
+                                <h4 className='text-light pb-1 text-uppercase' style={{ borderBottom: "1px solid #5B5D5C" }}>{studentName}'s Result Update</h4>
+                                <select onChange={(e) => { setExamtype(e.target.value) }} name="day" id="day">
+                                    <option value="Select Day">Select Exam Type</option>
+                                    <option value="1">Sessional 1</option>
+                                    <option value="2">Sessional 2</option>
+                                    <option value="3">Sessional 3</option>
+                                    <option value="4">Put</option>
+                                </select>
                             </div>
-                            <div className="col-12 col-md-6">
-                                <input type="text" onChange={(e) => { setSubject1marks(e.target.value) }} placeholder='Enter Subject 1 Marks' />
-                            </div>
-                            <div className="col-12 col-md-6">
-                                <input type="text" onChange={(e) => { setSubject2name(e.target.value) }} placeholder='Enter Subject 2 Name' />
-                            </div>
-                            <div className="col-12 col-md-6">
-                                <input type="text" onChange={(e) => { setSubject2marks(e.target.value) }} placeholder='Enter Subject 2 Marks' />
-                            </div>
-                            <div className="col-12 col-md-6">
-                                <input type="text" onChange={(e) => { setSubject3name(e.target.value) }} placeholder='Enter Subject 3 Name' />
-                            </div>
-                            <div className="col-12 col-md-6">
-                                <input type="text" onChange={(e) => { setSubject3marks(e.target.value) }} placeholder='Enter Subject 3 Marks' />
-                            </div>
-                            <div className="col-12 col-md-6">
-                                <input type="text" onChange={(e) => { setSubject4name(e.target.value) }} placeholder='Enter Subject 4 Name' />
-                            </div>
-                            <div className="col-12 col-md-6">
-                                <input type="text" onChange={(e) => { setSubject4marks(e.target.value) }} placeholder='Enter Subject 4 Marks' />
-                            </div>
-                            <div className="col-12 col-md-6">
-                                <input type="text" onChange={(e) => { setSubject5name(e.target.value) }} placeholder='Enter Subject 5 Name' />
-                            </div>
-                            <div className="col-12 col-md-6">
-                                <input type="text" onChange={(e) => { setSubject5marks(e.target.value) }} placeholder='Enter Subject 5 Marks' />
-                            </div>
-                            <div className="col-12 col-md-6">
-                                <input type="text" onChange={(e) => { setSubject6name(e.target.value) }} placeholder='Enter Subject 6 Name' />
-                            </div>
-                            <div className="col-12 col-md-6">
-                                <input type="text" onChange={(e) => { setSubject6marks(e.target.value) }} placeholder='Enter Subject 6 Marks' />
-                            </div>
+                            <form onSubmit={handleUpdateresult}>
+                                <div className="row">
+                                    <div className="col-12 col-md-6">
+                                        <input type="text" onChange={(e) => { setSubject1name(e.target.value) }} placeholder='Enter Subject 1 Name' />
+                                    </div>
+                                    <div className="col-12 col-md-6">
+                                        <input type="text" onChange={(e) => { setSubject1marks(e.target.value) }} placeholder='Enter Subject 1 Marks' />
+                                    </div>
+                                    <div className="col-12 col-md-6">
+                                        <input type="text" onChange={(e) => { setSubject2name(e.target.value) }} placeholder='Enter Subject 2 Name' />
+                                    </div>
+                                    <div className="col-12 col-md-6">
+                                        <input type="text" onChange={(e) => { setSubject2marks(e.target.value) }} placeholder='Enter Subject 2 Marks' />
+                                    </div>
+                                    <div className="col-12 col-md-6">
+                                        <input type="text" onChange={(e) => { setSubject3name(e.target.value) }} placeholder='Enter Subject 3 Name' />
+                                    </div>
+                                    <div className="col-12 col-md-6">
+                                        <input type="text" onChange={(e) => { setSubject3marks(e.target.value) }} placeholder='Enter Subject 3 Marks' />
+                                    </div>
+                                    <div className="col-12 col-md-6">
+                                        <input type="text" onChange={(e) => { setSubject4name(e.target.value) }} placeholder='Enter Subject 4 Name' />
+                                    </div>
+                                    <div className="col-12 col-md-6">
+                                        <input type="text" onChange={(e) => { setSubject4marks(e.target.value) }} placeholder='Enter Subject 4 Marks' />
+                                    </div>
+                                    <div className="col-12 col-md-6">
+                                        <input type="text" onChange={(e) => { setSubject5name(e.target.value) }} placeholder='Enter Subject 5 Name' />
+                                    </div>
+                                    <div className="col-12 col-md-6">
+                                        <input type="text" onChange={(e) => { setSubject5marks(e.target.value) }} placeholder='Enter Subject 5 Marks' />
+                                    </div>
+                                    <div className="col-12 col-md-6">
+                                        <input type="text" onChange={(e) => { setSubject6name(e.target.value) }} placeholder='Enter Subject 6 Name' />
+                                    </div>
+                                    <div className="col-12 col-md-6">
+                                        <input type="text" onChange={(e) => { setSubject6marks(e.target.value) }} placeholder='Enter Subject 6 Marks' />
+                                    </div>
+                                </div>
+                                <button type='submit'>Update Marks</button>
+                            </form>
                         </div>
-                        <button type='submit'>Update Marks</button>
-                    </form>
+                    </div>
                 </div>
-            </div>
-        </div>
+        )}
+        </>
+
     )
 }
 
