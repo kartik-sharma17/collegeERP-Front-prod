@@ -22,7 +22,7 @@ export const getStudentresultList = (section) => {
 }
 
 export const updatestudentresult = (data) => {
-    return axios.post(`${API_URL}${ApiEndPoint.Faculty.studentresultupdate}`,data)
+    return axios.post(`${API_URL}${ApiEndPoint.Faculty.studentresultupdate}`, data)
 }
 
 export const getEventds = () => {
@@ -30,9 +30,9 @@ export const getEventds = () => {
 }
 
 export const deleteEvents = (data) => {
-    return axios.post(`${API_URL}${ApiEndPoint.Faculty.deleteEvents}`,data)
+    return axios.post(`${API_URL}${ApiEndPoint.Faculty.deleteEvents}`, data)
 }
 
 export const updateEvents = (data) => {
-    return axios.post(`${API_URL}${ApiEndPoint.Faculty.updateEvents}`,data)
+    return axios.post(`${API_URL}${ApiEndPoint.Faculty.updateEvents}`, data)
 }

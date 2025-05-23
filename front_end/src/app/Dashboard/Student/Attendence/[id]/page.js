@@ -16,7 +16,7 @@ const page = () => {
 
   const fetchAttendence = async () => {
     try {
-      await axios.get(`https://college-erp-prod-backend-production.up.railway.app/dashboard/student/attendence/${id}`).then((res) => {
+      await axios.get(`https://college-erp-prod-backend.onrender.com/dashboard/student/attendence/${id}`).then((res) => {
         setAttendence(res.data);
         console.log(res);
         setLoading2(true);

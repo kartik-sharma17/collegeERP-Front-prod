@@ -3,10 +3,13 @@
 import React, { useEffect, useState } from "react";
 import "../../../Css/Common.scss";
 import { useParams } from "next/navigation";
-import { facultyProfile } from "@/app/Dashboard/Apis/Apihandler";
-import { Loader } from "@/app/Dashboard/@core/Loader";
+import { Loader } from "../../../@core/Loader";
+import { facultyProfile } from '../../../Apis/Apihandler'
+import { useDispatch } from "react-redux";
+import { setFacultyUser } from "../../../@redux/slice/facultySlicer";
 
 export const StudentProfile = () => {
+  const dispatch = useDispatch();
   const [resData, setResData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -21,8 +24,8 @@ export const StudentProfile = () => {
     try {
       let response = await facultyProfile(id);
       setResData(response.data);
-      // console.log(response.data.section)
       localStorage.setItem("section", response.data.section);
+      dispatch(setFacultyUser(response.data))
       setLoading(false);
     } catch (error) {
       console.log(

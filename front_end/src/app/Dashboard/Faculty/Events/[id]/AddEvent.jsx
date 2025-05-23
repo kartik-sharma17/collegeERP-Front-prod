@@ -1,8 +1,8 @@
 import React from "react";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { CustomInput } from "@/app/Dashboard/@core/input";
+import { CustomInput } from "../../../@core/input";
 import { useFormik } from "formik";
-import { updateEvents } from "@/app/Dashboard/Apis/Apihandler";
+import { updateEvents } from "../../../Apis/Apihandler";
 
 const AddEvent = () => {
 

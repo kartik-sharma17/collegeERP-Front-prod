@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Loader } from "@/app/Dashboard/@core/Loader";
-import { deleteEvents, getEventds } from "@/app/Dashboard/Apis/Apihandler";
+import { Loader } from "../../../@core/Loader";
+import { deleteEvents, getEventds } from "../../../Apis/Apihandler";
 import "../../../Css/Common.scss";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

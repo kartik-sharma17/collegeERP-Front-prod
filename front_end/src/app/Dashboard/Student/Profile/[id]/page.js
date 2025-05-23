@@ -25,7 +25,7 @@ export const StudentProfile = () => {
   // fettching the data for profile 
   const fetchData = async () => {
     try {
-      await axios.get(`https://college-erp-prod-backend-production.up.railway.app/dashboard/student/profile/${id}`).then((res) => {
+      await axios.get(`https://college-erp-prod-backend.onrender.com/dashboard/student/profile/${id}`).then((res) => {
         setResData(res.data);
         console.log(res);
         setLoading(true);

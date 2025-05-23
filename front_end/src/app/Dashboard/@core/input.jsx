@@ -8,10 +8,10 @@ const getErrormessage = (name, formik) => {
 };
 
 export const CustomInput = (props) => {
-  let { name, label, formik, value } = props;
+  let { name, label, formik, value, addLabelclass, addClass } = props;
   return (
-    <div className="d-flex flex-column">
-      <label className=" mb-2 d-flex justify-content-between">
+    <div className={`d-flex flex-column ${addClass}`}>
+      <label className={`mb-2 d-flex justify-content-between ${addLabelclass}`}>
         <span>
           {label}
           <span className="text-danger ps-1">*</span>
@@ -23,9 +23,9 @@ export const CustomInput = (props) => {
         id={name}
         name={name}
         onChange={formik.handleChange}
-        style={{border:'1px solid gray'}}
+        style={{ border: '1px solid gray' }}
         value={value ? value : formik.values[name]}
-        className="py-1 px-2 rounded"
+        className={`py-1 px-2 rounded `}
       />
       {getErrormessage(name, formik)}
     </div>

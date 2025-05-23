@@ -1,18 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import "primereact/resources/themes/lara-light-indigo/theme.css"; // Theme
-import "primereact/resources/primereact.min.css"; // Core CSS
-import "primeicons/primeicons.css"; // Icons
-import { getStudentresultList } from "@/app/Dashboard/Apis/Apihandler";
-import { DataTable } from "primereact/datatable";
+import { getStudentresultList } from "../../../Apis/Apihandler";
 import { Column } from "primereact/column";
-import { updateStudentattendence } from "@/app/Dashboard/Apis/Apihandler";
 import Link from "next/link";
-import { Loader } from "@/app/Dashboard/@core/Loader";
+import { Loader } from "../../../@core/Loader";
+import { CustomTable } from "../../../@core/CustomTable";
+import { faEye, faPen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const page = () => {
-  // for table
   const [loading, setLoading] = useState(true);
   const [attendence, setAttendence] = useState([]);
   const [tableData, setTabledata] = useState([]);
@@ -22,8 +19,6 @@ const page = () => {
 
   const id = param.id;
   var section;
-  // getting the section
-
   useEffect(() => {
     section = localStorage.getItem("section");
     setTimeout(() => {
@@ -46,13 +41,21 @@ const page = () => {
   const updateResult = (rowData) => {
     return (
       <>
-        <Link
+        <Link className="customBtn2"
           href={{
             pathname: `/Dashboard/Faculty/Result/${id}/updateResult`,
             query: rowData,
           }}
         >
-          Update Result
+          <FontAwesomeIcon icon={faPen} />
+        </Link>
+        <Link className="customBtn3 ms-2"
+          href={{
+            pathname: `/Dashboard/Faculty/Result/${id}/updateResult`,
+            query: rowData,
+          }}
+        >
+          <FontAwesomeIcon icon={faEye} />
         </Link>
       </>
     );
@@ -62,26 +65,6 @@ const page = () => {
     setAttendence([]);
   }, [day]);
 
-  const handleUpdateAttence = async (e) => {
-    e.preventDefault();
-
-    if (day !== "Select Day")
-      if (attendence.length !== 0) {
-        try {
-          let response = await updateStudentattendence(attendence);
-          console.log(response);
-          alert("updated successfully");
-        } catch (e) {
-          console.log(e);
-          alert("there is some error ", e);
-        }
-      } else {
-        alert("Please update the attendence first");
-      }
-    else {
-      alert("please select the day first");
-    }
-  };
 
   return (
     <>
@@ -97,17 +80,14 @@ const page = () => {
               >
                 Result Update{" "}
               </h4>
-              <DataTable
-                value={tableData}
+              <CustomTable value={tableData}
                 paginator
-                rows={5}
-                dataKey="id"
-                emptyMessage="No customers found."
-              >
-                <Column field="studentId" header="Student ID" />
+                rows={10}
+                emptyMessage="No Data found.">
+                <Column style={{ width: "20%" }} field="studentId" header="Student ID" />
                 <Column field="studentName" header="Student Name" />
-                <Column body={updateResult} header="Attendence" />
-              </DataTable>
+                <Column body={updateResult} header="Update Result" />
+              </CustomTable>
             </div>
           </div>
         </div>

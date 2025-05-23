@@ -1,11 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { getStudentattendenceList } from "@/app/Dashboard/Apis/Apihandler";
-import { DataTable } from "primereact/datatable";
+import { getStudentattendenceList } from "../../../Apis/Apihandler";
 import { Column } from "primereact/column";
-import { updateStudentattendence } from "@/app/Dashboard/Apis/Apihandler";
-import { Loader } from "@/app/Dashboard/@core/Loader";
+import { updateStudentattendence } from "../../../Apis/Apihandler";
+import { Loader } from "../../../@core/Loader";
+import { CustomTable } from "../../../@core/CustomTable";
+import { CustomBtn } from "../../../@core/CustomBtn";
 
 const page = () => {
   // for table
@@ -44,7 +45,7 @@ const page = () => {
   const updateAttendence = (rowData) => {
     if (attendence.some((item) => item.id === rowData.studentId))
       return (
-        <button
+        <button style={{padding:'3px 15px',border:"none",backgroundColor:'#f2392c',borderRadius:"10px",color:"white"}}
           onClick={() => {
             setAttendence((pre) =>
               pre.filter((pre) => pre.id != rowData.studentId)
@@ -56,7 +57,7 @@ const page = () => {
         </button>
       );
     return (
-      <button
+      <button style={{padding:'3px 15px',border:"none",backgroundColor:'#2dd42a',borderRadius:"10px",color:""}}
         onClick={() => {
           if (day !== "Select Day") {
             setAttendence((pre) => [
@@ -114,7 +115,7 @@ const page = () => {
                 >
                   Attendence Update
                 </h4>
-                <select
+                <select className="px-3 py-1"
                   onChange={(e) => {
                     setDay(e.target.value);
                   }}
@@ -129,19 +130,16 @@ const page = () => {
                   ))}
                 </select>
               </div>
-              <DataTable
-                value={tableData}
+              <CustomTable value={tableData}
                 paginator
                 rows={5}
-                dataKey="id"
-                emptyMessage="No customers found."
-              >
-                <Column field="studentId" header="Student ID" />
+                emptyMessage="No Data Found.">
+                <Column style={{ width: '20%' }} field="studentId" header="Student ID" />
                 <Column field="studentName" header="Student Name" />
                 <Column body={updateAttendence} header="Attendence" />
-              </DataTable>
+              </CustomTable>
               <form onSubmit={handleUpdateAttence}>
-                <button>UPDATE ATTENDENCE</button>
+                <CustomBtn addClass={'my-2'} label={"UPDATE ATTENDENCE"} />
               </form>
             </div>
           </div>

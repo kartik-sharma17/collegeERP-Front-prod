@@ -1,0 +1,31 @@
+tbody,
+td,
+tfoot,
+th {
+    padding: 10px;
+    text-align: center;
+}
+
+.p-datatable .p-column-header-content {
+    justify-content: center;
+}
+
+.p-datatable .p-datatable-thead>tr>th {
+    background-color: #d2e5e5;
+}
+
+.customTable {
+    border-radius: 7px;
+}
+
+.p-datatable .p-paginator-bottom {
+    padding: 10px 0px !important;
+}
+
+// for btn 
+.customSubmitBtn{
+    padding: 7px 25px;
+    background-color: #9ae4e0;
+    border: none;
+    border-radius: 10px;
+}

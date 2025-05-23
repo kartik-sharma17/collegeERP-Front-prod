@@ -1,24 +1,24 @@
 'use client'
 import { useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
-import { updatestudentresult } from '@/app/Dashboard/Apis/Apihandler'
-import { Loader } from '@/app/Dashboard/@core/Loader'
+import { updatestudentresult } from '../../../../Apis/Apihandler'
+import { CustomInput } from '../../../../@core/input'
+import { Loader } from '../../../../@core/Loader'
+import { useFormik } from 'formik'
+import { initialValues, validate } from './formConfig'
+import { CustomBtn } from '../../../../@core/CustomBtn'
 
 const page = () => {
-    const [subject1Name, setSubject1name] = useState("");
-    const [subject1marks, setSubject1marks] = useState();
-    const [subject2Name, setSubject2name] = useState("");
-    const [subject2marks, setSubject2marks] = useState();
-    const [subject3Name, setSubject3name] = useState("");
-    const [subject3marks, setSubject3marks] = useState();
-    const [subject4Name, setSubject4name] = useState("");
-    const [subject4marks, setSubject4marks] = useState();
-    const [subject5Name, setSubject5name] = useState("");
-    const [subject5marks, setSubject5marks] = useState();
-    const [subject6Name, setSubject6name] = useState("");
-    const [subject6marks, setSubject6marks] = useState();
+    const formik = useFormik({
+        initialValues,
+        validate,
+        onSubmit: (values) => {
+            setLoading(true)
+            handleUpdateresult(values)
+        }
+    })
     const [examType, setExamtype] = useState('Select Exam Type');
-    const [loading,setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
 
 
     const data1 = useSearchParams()
@@ -26,30 +26,29 @@ const page = () => {
     var studentID = data1.get("studentId")
 
 
-    const handleUpdateresult = async (e) => {
-        e.preventDefault();
-
+    const handleUpdateresult = async (values) => {
         const data = {
             studentId: studentID,
             sessionalNo: examType,
-            s1: subject1Name,
-            s1marks: parseInt(subject1marks),
-            s2: subject2Name,
-            s2marks: parseInt(subject2marks),
-            s3: subject3Name,
-            s3marks: parseInt(subject3marks),
-            s4: subject4Name,
-            s4marks: parseInt(subject4marks),
-            s5: subject5Name,
-            s5marks: parseInt(subject5marks),
-            s6: subject6Name,
-            s6marks: parseInt(subject6marks)
+            s1: values.subject1Name,
+            s1marks: parseInt(values.subject1marks),
+            s2: values.subject2Name,
+            s2marks: parseInt(values.subject2marks),
+            s3: values.subject3Name,
+            s3marks: parseInt(values.subject3marks),
+            s4: values.subject4Name,
+            s4marks: parseInt(values.subject4marks),
+            s5: values.subject5Name,
+            s5marks: parseInt(values.subject5marks),
+            s6: values.subject6Name,
+            s6marks: parseInt(values.subject6marks)
         }
 
         if (examType !== "Select Exam Type") {
             try {
                 const response = await updatestudentresult(data);
                 console.log(response)
+                setLoading(false)
                 alert("successfully updated");
             } catch (e) {
                 console.log(e)
@@ -57,28 +56,28 @@ const page = () => {
         }
         else {
             alert("Select exam Type First")
+            setLoading(false)
         }
-        console.log(data);
     }
 
 
-    useEffect(()=>{
-        setTimeout(()=>{
+    useEffect(() => {
+        setTimeout(() => {
             setLoading(false);
-        },1000)
-    },[])
+        }, 1000)
+    }, [])
 
     return (
         <>
-        {loading? (
-            <Loader/>
-        ) : (
-                    <div className="row">
+            {loading ? (
+                <Loader />
+            ) : (
+                <div className="row">
                     <div className="col-12 px-2">
                         <div className={`${"custom_bg_color"} ${"p-3 rounded-4"}`}>
                             <div className="col-12 d-flex align-items-center justify-content-between">
                                 <h4 className='text-light pb-1 text-uppercase' style={{ borderBottom: "1px solid #5B5D5C" }}>{studentName}'s Result Update</h4>
-                                <select onChange={(e) => { setExamtype(e.target.value) }} name="day" id="day">
+                                <select className='px-3 py-1 rounded-2' onChange={(e) => { setExamtype(e.target.value) }} name="day" id="day">
                                     <option value="Select Day">Select Exam Type</option>
                                     <option value="1">Sessional 1</option>
                                     <option value="2">Sessional 2</option>
@@ -86,51 +85,51 @@ const page = () => {
                                     <option value="4">Put</option>
                                 </select>
                             </div>
-                            <form onSubmit={handleUpdateresult}>
+                            <form onSubmit={formik.handleSubmit}>
                                 <div className="row">
                                     <div className="col-12 col-md-6">
-                                        <input type="text" onChange={(e) => { setSubject1name(e.target.value) }} placeholder='Enter Subject 1 Name' />
+                                        <CustomInput addClass="my-2" name="subject1Name" formik={formik} label="Enter First Subject Name" placeholder="Enter First Subject Name" addLabelclass="text-white" />
                                     </div>
                                     <div className="col-12 col-md-6">
-                                        <input type="text" onChange={(e) => { setSubject1marks(e.target.value) }} placeholder='Enter Subject 1 Marks' />
+                                        <CustomInput addClass="my-2" name="subject1marks" formik={formik} label="Enter Subject 1 Marks" placeholder="Enter Subject 1 Marks" addLabelclass="text-white" />
                                     </div>
                                     <div className="col-12 col-md-6">
-                                        <input type="text" onChange={(e) => { setSubject2name(e.target.value) }} placeholder='Enter Subject 2 Name' />
+                                        <CustomInput addClass="my-2" name="subject2Name" formik={formik} label="Enter Subject 2 Name" placeholder="Enter Subject 2 Name" addLabelclass="text-white" />
                                     </div>
                                     <div className="col-12 col-md-6">
-                                        <input type="text" onChange={(e) => { setSubject2marks(e.target.value) }} placeholder='Enter Subject 2 Marks' />
+                                        <CustomInput addClass="my-2" name="subject2marks" formik={formik} label="Enter Subject 2 Marks" placeholder="Enter Subject 2 Marks" addLabelclass="text-white" />
                                     </div>
                                     <div className="col-12 col-md-6">
-                                        <input type="text" onChange={(e) => { setSubject3name(e.target.value) }} placeholder='Enter Subject 3 Name' />
+                                        <CustomInput addClass="my-2" name="subject3Name" formik={formik} label="Enter Subject 3 Name" placeholder="Enter Subject 3 Name" addLabelclass="text-white" />
                                     </div>
                                     <div className="col-12 col-md-6">
-                                        <input type="text" onChange={(e) => { setSubject3marks(e.target.value) }} placeholder='Enter Subject 3 Marks' />
+                                        <CustomInput addClass="my-2" name="subject3marks" formik={formik} label="Enter Subject 3 Marks" placeholder="Enter Subject 3 Marks" addLabelclass="text-white" />
                                     </div>
                                     <div className="col-12 col-md-6">
-                                        <input type="text" onChange={(e) => { setSubject4name(e.target.value) }} placeholder='Enter Subject 4 Name' />
+                                        <CustomInput addClass="my-2" name="subject4Name" formik={formik} label="Enter Subject 4 Name" placeholder="Enter Subject 4 Name" addLabelclass="text-white" />
                                     </div>
                                     <div className="col-12 col-md-6">
-                                        <input type="text" onChange={(e) => { setSubject4marks(e.target.value) }} placeholder='Enter Subject 4 Marks' />
+                                        <CustomInput addClass="my-2" name="subject4marks" formik={formik} label="Enter Subject 4 Marks" placeholder="Enter Subject 4 Marks" addLabelclass="text-white" />
                                     </div>
                                     <div className="col-12 col-md-6">
-                                        <input type="text" onChange={(e) => { setSubject5name(e.target.value) }} placeholder='Enter Subject 5 Name' />
+                                        <CustomInput addClass="my-2" name="subject5Name" formik={formik} label="Enter Subject 5 Name" placeholder="Enter Subject 5 Name" addLabelclass="text-white" />
                                     </div>
                                     <div className="col-12 col-md-6">
-                                        <input type="text" onChange={(e) => { setSubject5marks(e.target.value) }} placeholder='Enter Subject 5 Marks' />
+                                        <CustomInput addClass="my-2" name="subject5marks" formik={formik} label="Enter Subject 5 Marks" placeholder="Enter Subject 5 Marks" addLabelclass="text-white" />
                                     </div>
                                     <div className="col-12 col-md-6">
-                                        <input type="text" onChange={(e) => { setSubject6name(e.target.value) }} placeholder='Enter Subject 6 Name' />
+                                        <CustomInput addClass="my-2" name="subject6Name" formik={formik} label="Enter Subject 6 Name" placeholder="Enter Subject 6 Name" addLabelclass="text-white" />
                                     </div>
                                     <div className="col-12 col-md-6">
-                                        <input type="text" onChange={(e) => { setSubject6marks(e.target.value) }} placeholder='Enter Subject 6 Marks' />
+                                        <CustomInput addClass="my-2" name="subject6marks" formik={formik} label="Enter Subject 6 Marks" placeholder="Enter Subject 6 Marks" addLabelclass="text-white" />
                                     </div>
                                 </div>
-                                <button type='submit'>Update Marks</button>
+                                <CustomBtn type='submit' addClass={"my-3"} label={"Update Marks"} />
                             </form>
                         </div>
                     </div>
                 </div>
-        )}
+            )}
         </>
 
     )

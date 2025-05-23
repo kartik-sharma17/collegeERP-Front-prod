@@ -1,4 +1,4 @@
-# for local server
+# # for local server
 # # Use OpenJDK 22 as base image
 # FROM openjdk:22-jdk-slim
 
@@ -16,17 +16,17 @@
 
 
 # for render server
-# Stage 1: Build the app
 # Stage 1: Build the app with Maven and JDK 21
-FROM maven:3.9.6-eclipse-temurin-21 as builder
+FROM maven:3.9.6-eclipse-temurin-21 AS builder
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 
-# Stage 2: Use JDK 22 to run (you can still run with JDK 22 if you want)
+# Stage 2: Run the app with JDK 22
 FROM eclipse-temurin:22-jdk
 WORKDIR /app
-COPY --from=builder /app/target/*.jar app.jar
+COPY --from=builder /app/target/college_erp-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
 
