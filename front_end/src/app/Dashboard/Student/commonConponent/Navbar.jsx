@@ -2,9 +2,11 @@
 import { usePathname } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell } from '@fortawesome/free-regular-svg-icons'
-
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+  const userData = useSelector((state) => state.student.studentUser);
+
   const para = usePathname();
   const id = para.split('/')
   return (
@@ -23,7 +25,7 @@ const Navbar = () => {
                   <img src="/assets/img/pic.jpeg" className='img-fluid rounded-circle' alt="" />
                 </div>
                 <div className='ms-3'>
-                  <p className='m-0 text-white'>Kartik Sharma</p>
+                  <p className='m-0 text-white'>{userData.fullName}</p>
                   <p className='m-0 size_medium custom_color1'>Hello, Welcome back!</p>
                 </div>
               </li>

@@ -8,7 +8,6 @@ import { faUser, faBookmark, faBell } from '@fortawesome/free-regular-svg-icons'
 import Link from 'next/link';
 import { usePathname } from "next/navigation";
 
-
 const Sidebar = () => {
   const para = usePathname();
   const id = para.split('/')

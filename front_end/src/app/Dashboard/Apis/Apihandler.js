@@ -36,3 +36,9 @@ export const deleteEvents = (data) => {
 export const updateEvents = (data) => {
     return axios.post(`${API_URL}${ApiEndPoint.Faculty.updateEvents}`, data)
 }
+
+
+// for student 
+export const studentProfile = (id) => {
+    return axios.get(`${API_URL}${ApiEndPoint.Student.Profile}${id}`)
+}

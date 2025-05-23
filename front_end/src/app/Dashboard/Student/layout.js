@@ -3,6 +3,7 @@ import "./globals.css";
 import Sidebar from "./commonConponent/Sidebar";
 import Navbar from "./commonConponent/Navbar";
 import '../Css/Common.scss';
+import { ReduxProvider } from '../@redux/ReduxProvider'
 
 
 const geistSans = Geist({
@@ -37,12 +38,14 @@ export default function RootLayout({ children }) {
             </div>
             <div className="col-12 col-md-10">
               <div className="row">
-                <div className="col-12 p-0">
-                  <Navbar />
-                </div>
-                <div className="col-12 p-3">
-                  {children}
-                </div>
+                <ReduxProvider>
+                  <div className="col-12 p-0">
+                    <Navbar />
+                  </div>
+                  <div className="col-12 p-3">
+                    {children}
+                  </div>
+                </ReduxProvider>
               </div>
             </div>
           </div>

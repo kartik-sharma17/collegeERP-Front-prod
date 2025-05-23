@@ -9,6 +9,11 @@ export const ApiEndPoint = {
         getEvents: "dashboard/student/events",
         deleteEvents:"dashboard/faculty/deleteevents",
         updateEvents:"dashboard/faculty/updatevents"
+    },
+
+    // for student 
+    Student:{
+        Profile: "dashboard/student/profile/"
     }
     
 };
