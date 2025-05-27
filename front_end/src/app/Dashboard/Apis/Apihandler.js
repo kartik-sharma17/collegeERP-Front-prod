@@ -42,3 +42,11 @@ export const updateEvents = (data) => {
 export const studentProfile = (id) => {
     return axios.get(`${API_URL}${ApiEndPoint.Student.Profile}${id}`)
 }
+
+export const studentAttendence = (id) => {
+    return axios.get(`${API_URL}${ApiEndPoint.Student.Attendence}${id}`)
+}
+
+export const studentResult = (id) => {
+    return axios.get(`${API_URL}${ApiEndPoint.Student.Result}${id}`)
+}

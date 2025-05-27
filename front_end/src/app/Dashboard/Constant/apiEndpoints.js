@@ -13,7 +13,9 @@ export const ApiEndPoint = {
 
     // for student 
     Student:{
-        Profile: "dashboard/student/profile/"
+        Profile: "dashboard/student/profile/",
+        Attendence: "dashboard/student/attendence/",
+        Result: "dashboard/student/result/"
     }
     
 };

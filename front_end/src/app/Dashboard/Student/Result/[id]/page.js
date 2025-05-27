@@ -1,13 +1,13 @@
 'use client'
-import axios from 'axios';
 import Link from 'next/link'
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
+import { Loader } from '../../../@core/Loader';
+import { studentResult } from '../../../Apis/Apihandler';
 
 const page = () => {
   const params = useParams();
   const id = params.id;
-
   const [loading, setLoading] = useState(false);
   const [resData, setResData] = useState(null);
 
@@ -15,28 +15,24 @@ const page = () => {
     fetchData();
   }, []);
 
-
-  // fettching the data for profile 
   const fetchData = async () => {
     try {
-      await axios.get(`https://college-erp-prod-backend-production.up.railway.app/dashboard/student/result/${id}`).then((res) => {
-        setResData(res.data);
-        console.log(res);
-        setLoading(true);
-      })
+      const res = await studentResult(id)
+      setResData(res.data);
+      console.log(res);
+      setLoading(true);
     }
     catch (error) {
       console.log("there is some error while Fetching the data from backend", error)
     }
   }
 
-
-  if (loading) return (
-    <>
+  return (
+    loading ? (
       <div className="row">
-        <div className="col-12 col-md-6 px-2">
-          <Link className='text-decoration-none' href={{ pathname: `/Dashboard/Student/Result/${id}/sessional1`, query: resData }}>
-            <div className='custom_bg_color p-3 rounded-4'>
+        <div style={{minHeight:"50%"}} className="col-12 col-md-6 px-2">
+          <Link className='text-decoration-none h-full' href={{ pathname: `/Dashboard/Student/Result/${id}/sessional1`, query: resData }}>
+            <div className='custom_bg_color p-3 rounded-4 h-full'>
               <h4 className='text-light pb-1' style={{ borderBottom: "1px solid #5B5D5C" }}>Sessional 1</h4>
               <h6 className='text-light'><span className={"label"}>Date : </span> 31-10-24</h6>
             </div>
@@ -67,7 +63,9 @@ const page = () => {
           </Link>
         </div>
       </div>
-    </>
+    ) : (
+      <Loader />
+    )
   )
 }
 

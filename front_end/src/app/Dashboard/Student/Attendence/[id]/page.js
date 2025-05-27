@@ -1,28 +1,25 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
 import { useParams } from 'next/navigation';
 import { Chart } from 'primereact/chart';
-import 'primereact/resources/themes/lara-light-indigo/theme.css'; // Theme
-import 'primereact/resources/primereact.min.css'; // Core CSS
-import 'primeicons/primeicons.css'; // Icons
+import 'primereact/resources/themes/lara-light-indigo/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+import { studentAttendence } from '../../../Apis/Apihandler';
+import { Loader } from "../../../@core/Loader"
 
 const page = () => {
   const params = useParams();
   const id = params.id;
   const [loading2, setLoading2] = useState(false);
   const [resAttendence, setAttendence] = useState(null);
-  // fettching the data for attendence
 
   const fetchAttendence = async () => {
     try {
-      await axios.get(`https://college-erp-prod-backend.onrender.com/dashboard/student/attendence/${id}`).then((res) => {
-        setAttendence(res.data);
-        console.log(res);
-        setLoading2(true);
-        // const objLength = Object.keys(res.data).length;
-        // console.log(objLength);
-      })
+      const res = await studentAttendence(id)
+      setAttendence(res.data);
+      console.log(res);
+      setLoading2(true);
     }
     catch (error) {
       console.log("there is some error while Fetching the Attendence from backend", error)
@@ -321,81 +318,86 @@ const page = () => {
 
 
 
-  if (loading2) return (
-    <div className="row">
-      <div className={`${"col-12 col-md-7"}`}>
-        <div className="row">
-          <div className="col-12 px-2">
-          <div className={`${"custom_bg_color"} ${"p-3 rounded-4"}`}>
-            <h4 className='text-light pb-1' style={{ borderBottom: "1px solid #5B5D5C" }}>Attendence</h4>
-            <div className="row p-1 g-2">
-              <div className="col-12">
-                <div className="row">
-                  <div style={{ height: "34px", width: "34px", }} className={`${day1 ? "present" : "absent"} ${'p-2 m-2'}`} >1</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day2 ? "present" : "absent"} ${'p-2 m-2'}`} >2</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day3 ? "present" : "absent"} ${'p-2 m-2'}`} >3</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day4 ? "present" : "absent"} ${'p-2 m-2'}`} >4</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day5 ? "present" : "absent"} ${'p-2 m-2'}`} >5</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day6 ? "present" : "absent"} ${'p-2 m-2'}`} >6</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day7 ? "present" : "absent"} ${'p-2 m-2'}`} >7</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day8 ? "present" : "absent"} ${'p-2 m-2'}`} >8</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day9 ? "present" : "absent"} ${'p-2 m-2'}`} >9</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day10 ? "present" : "absent"} ${'p-2 m-2'}`} >10</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day11 ? "present" : "absent"} ${'p-2 m-2'}`} >11</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day12 ? "present" : "absent"} ${'p-2 m-2'}`} >12</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day13 ? "present" : "absent"} ${'p-2 m-2'}`} >13</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day14 ? "present" : "absent"} ${'p-2 m-2'}`} >14</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day15 ? "present" : "absent"} ${'p-2 m-2'}`} >15</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day16 ? "present" : "absent"} ${'p-2 m-2'}`} >16</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day17 ? "present" : "absent"} ${'p-2 m-2'}`} >17</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day18 ? "present" : "absent"} ${'p-2 m-2'}`} >18</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day19 ? "present" : "absent"} ${'p-2 m-2'}`} >19</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day20 ? "present" : "absent"} ${'p-2 m-2'}`} >20</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day21 ? "present" : "absent"} ${'p-2 m-2'}`} >21</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day22 ? "present" : "absent"} ${'p-2 m-2'}`} >22</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day23 ? "present" : "absent"} ${'p-2 m-2'}`} >23</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day24 ? "present" : "absent"} ${'p-2 m-2'}`} >24</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day25 ? "present" : "absent"} ${'p-2 m-2'}`} >25</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day26 ? "present" : "absent"} ${'p-2 m-2'}`} >26</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day27 ? "present" : "absent"} ${'p-2 m-2'}`} >27</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day28 ? "present" : "absent"} ${'p-2 m-2'}`} >28</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day29 ? "present" : "absent"} ${'p-2 m-2'}`} >29</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day30 ? "present" : "absent"} ${'p-2 m-2'}`} >30</div>
-                  <div style={{ height: "34px", width: "34px", }} className={`${day31 ? "present" : "absent"} ${'p-2 m-2'}`} >31</div>
+  return (
+    loading2 ? (
+      <div className="row">
+        <div className={`${"col-12 col-md-7"}`}>
+          <div className="row">
+            <div className="col-12 px-2">
+              <div className={`${"custom_bg_color"} ${"p-3 rounded-4"}`}>
+                <h4 className='text-light pb-1' style={{ borderBottom: "1px solid #5B5D5C" }}>Attendence</h4>
+                <div className="row p-1 g-2">
+                  <div className="col-12">
+                    <div className="row">
+                      <div style={{ height: "34px", width: "34px", }} className={`${day1 ? "present" : "absent"} ${'p-2 m-2'}`} >1</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day2 ? "present" : "absent"} ${'p-2 m-2'}`} >2</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day3 ? "present" : "absent"} ${'p-2 m-2'}`} >3</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day4 ? "present" : "absent"} ${'p-2 m-2'}`} >4</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day5 ? "present" : "absent"} ${'p-2 m-2'}`} >5</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day6 ? "present" : "absent"} ${'p-2 m-2'}`} >6</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day7 ? "present" : "absent"} ${'p-2 m-2'}`} >7</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day8 ? "present" : "absent"} ${'p-2 m-2'}`} >8</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day9 ? "present" : "absent"} ${'p-2 m-2'}`} >9</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day10 ? "present" : "absent"} ${'p-2 m-2'}`} >10</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day11 ? "present" : "absent"} ${'p-2 m-2'}`} >11</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day12 ? "present" : "absent"} ${'p-2 m-2'}`} >12</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day13 ? "present" : "absent"} ${'p-2 m-2'}`} >13</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day14 ? "present" : "absent"} ${'p-2 m-2'}`} >14</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day15 ? "present" : "absent"} ${'p-2 m-2'}`} >15</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day16 ? "present" : "absent"} ${'p-2 m-2'}`} >16</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day17 ? "present" : "absent"} ${'p-2 m-2'}`} >17</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day18 ? "present" : "absent"} ${'p-2 m-2'}`} >18</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day19 ? "present" : "absent"} ${'p-2 m-2'}`} >19</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day20 ? "present" : "absent"} ${'p-2 m-2'}`} >20</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day21 ? "present" : "absent"} ${'p-2 m-2'}`} >21</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day22 ? "present" : "absent"} ${'p-2 m-2'}`} >22</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day23 ? "present" : "absent"} ${'p-2 m-2'}`} >23</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day24 ? "present" : "absent"} ${'p-2 m-2'}`} >24</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day25 ? "present" : "absent"} ${'p-2 m-2'}`} >25</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day26 ? "present" : "absent"} ${'p-2 m-2'}`} >26</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day27 ? "present" : "absent"} ${'p-2 m-2'}`} >27</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day28 ? "present" : "absent"} ${'p-2 m-2'}`} >28</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day29 ? "present" : "absent"} ${'p-2 m-2'}`} >29</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day30 ? "present" : "absent"} ${'p-2 m-2'}`} >30</div>
+                      <div style={{ height: "34px", width: "34px", }} className={`${day31 ? "present" : "absent"} ${'p-2 m-2'}`} >31</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          </div>
-          <div className="col-12 col-md-5 p-2">
-            <div className="custom_bg_color p-3 rounded-4">
-            <h4 className='text-light pb-1' style={{ borderBottom: "1px solid #5B5D5C" }}>Percentage</h4>
-            <h6><span className={"label"}>Total Days : </span>31</h6>
-            <h6><span className={"label"}>Present : </span>{[present]}</h6>
-            <h6><span className={"label"}>Absent : </span>{31 - present}</h6>
-            <h6><span className={"label"}>Percentage : </span>{parseInt((present / 31) * 100)}%</h6>
+            <div className="col-12 col-md-5 p-2">
+              <div className="custom_bg_color p-3 rounded-4">
+                <h4 className='text-light pb-1' style={{ borderBottom: "1px solid #5B5D5C" }}>Percentage</h4>
+                <h6><span className={"label"}>Total Days : </span>31</h6>
+                <h6><span className={"label"}>Present : </span>{[present]}</h6>
+                <h6><span className={"label"}>Absent : </span>{31 - present}</h6>
+                <h6><span className={"label"}>Percentage : </span>{parseInt((present / 31) * 100)}%</h6>
+              </div>
+            </div>
+            <div className="col-12 col-md-7 p-2">
+              <div className="custom_bg_color p-3 rounded-4">
+                <h4 className='text-light pb-1' style={{ borderBottom: "1px solid #5B5D5C" }}>Holidays</h4>
+                <h6><span className={"label"}>Total Days : </span>31</h6>
+                <h6><span className={"label"}>Present : </span>{[present]}</h6>
+                <h6><span className={"label"}>Absent : </span>{31 - present}</h6>
+                <h6><span className={"label"}>Percentage : </span>{parseInt((present / 31) * 100)}%</h6>
+              </div>
             </div>
           </div>
-          <div className="col-12 col-md-7 p-2">
-            <div className="custom_bg_color p-3 rounded-4">
-            <h4 className='text-light pb-1' style={{ borderBottom: "1px solid #5B5D5C" }}>Holidays</h4>
-            <h6><span className={"label"}>Total Days : </span>31</h6>
-            <h6><span className={"label"}>Present : </span>{[present]}</h6>
-            <h6><span className={"label"}>Absent : </span>{31 - present}</h6>
-            <h6><span className={"label"}>Percentage : </span>{parseInt((present / 31) * 100)}%</h6>
+        </div>
+        <div className='col-12 col-md-5 px-1'>
+          <div className='custom_bg_color p-3 rounded-4'>
+            <h4 className='text-light pb-1' style={{ borderBottom: "1px solid #5B5D5C" }}>Attendence Chart</h4>
+            <div className="card flex justify-content-center">
+              <Chart type="doughnut" data={chartData} options={chartOptions} className="w-full md:w-30rem" />
             </div>
           </div>
         </div>
       </div>
-      <div className='col-12 col-md-5 px-1'>
-        <div className='custom_bg_color p-3 rounded-4'>
-          <h4 className='text-light pb-1' style={{ borderBottom: "1px solid #5B5D5C" }}>Attendence Chart</h4>
-          <div className="card flex justify-content-center">
-            <Chart type="doughnut" data={chartData} options={chartOptions} className="w-full md:w-30rem" />
-          </div>
-        </div>
-      </div>
-    </div>
+    ) : (
+      <Loader />
+    )
+
   )
 }
 
