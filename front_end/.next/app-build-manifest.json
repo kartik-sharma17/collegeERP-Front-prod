@@ -1,0 +1,56 @@
+{
+  "pages": {
+    "/(loginMain)/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/(loginMain)/layout.css",
+      "static/chunks/app/(loginMain)/layout.js"
+    ],
+    "/(loginMain)/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(loginMain)/page.js"
+    ],
+    "/(loginMain)/login/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/(loginMain)/login/page.css",
+      "static/chunks/app/(loginMain)/login/page.js"
+    ],
+    "/Dashboard/Student/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/Dashboard/Student/layout.css",
+      "static/chunks/app/Dashboard/Student/layout.js"
+    ],
+    "/Dashboard/Student/Profile/[id]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/Dashboard/Student/Profile/[id]/page.css",
+      "static/chunks/app/Dashboard/Student/Profile/[id]/page.js"
+    ],
+    "/Dashboard/Faculty/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/Dashboard/Faculty/layout.css",
+      "static/chunks/app/Dashboard/Faculty/layout.js"
+    ],
+    "/Dashboard/Faculty/Profile/[id]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/Dashboard/Faculty/Profile/[id]/page.css",
+      "static/chunks/app/Dashboard/Faculty/Profile/[id]/page.js"
+    ],
+    "/Dashboard/Faculty/Events/[id]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/Dashboard/Faculty/Events/[id]/page.css",
+      "static/chunks/app/Dashboard/Faculty/Events/[id]/page.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/_not-found/page.js"
+    ]
+  }
+}

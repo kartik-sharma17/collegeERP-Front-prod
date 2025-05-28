@@ -1,0 +1,70 @@
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[11].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[11].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[11].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[11].use[5]!./src/app/(loginMain)/login/Login.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.main_body {
+  height: 100vh;
+  width: 100vw;
+}
+
+.filter {
+  height: 100%;
+  width: 100%;
+  background-image: url(/_next/static/media/bg-2.b65c362c.jpg);
+  background-size: cover;
+  filter: brightness(0.8);
+  position: absolute;
+}
+
+.login_box {
+  /* height: 470px; */
+  width: 380px;
+  background-color: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+}
+
+.login_box h1 {
+  font-family: "Roboto Condensed", serif;
+  font-weight: 400;
+}
+
+.login_box h6 {
+  font-weight: 300;
+}
+
+.custom_anchor {
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.custom_inputs {
+  background-color: transparent;
+  border: 1px solid rgba(125, 124, 131, 0.5960784314);
+  color: white;
+  font-family: "Inconsolata", monospace;
+  font-weight: 500;
+}
+
+.custom_inputs option {
+  font-family: "Inconsolata", monospace;
+  font-weight: 500;
+}
+
+.custom_inputs ::placeholder {
+  color: white;
+}
+
+.custom_btn {
+  background-color: #27acac;
+  border: none;
+  font-size: 17px;
+  font-family: "Roboto Condensed", serif;
+  font-weight: 400;
+}
+/*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./src/app/(loginMain)/login/common.css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************/
+::placeholder{
+    color: aliceblue;
+}

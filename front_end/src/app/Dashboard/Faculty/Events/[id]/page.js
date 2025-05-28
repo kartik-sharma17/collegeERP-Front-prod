@@ -16,7 +16,7 @@ const page = () => {
   const fetchEvents = async () => {
     try {
       const response = await getEventds();
-      setResdata(response.data);
+      setResdata(response?.data);
       setLoading(false);
     } catch {
       alert("there is something wrong whiling fetching events");
